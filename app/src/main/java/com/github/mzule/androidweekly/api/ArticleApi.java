@@ -52,7 +52,7 @@ public class ArticleApi {
                     String title = td.getElementsByClass("article-headline").get(0).text();
                     String brief = td.getElementsByTag("p").get(0).text();
                     String link = td.getElementsByClass("article-headline").get(0).attr("href");
-                    String domain = td.getElementsByTag("span").get(0).text();
+                    String domain = td.getElementsByTag("span").get(0).text().replace("(", "").replace(")", "");
                     articles.add(new Article(title, brief, link, imageUrl, domain));
                 }
             }
