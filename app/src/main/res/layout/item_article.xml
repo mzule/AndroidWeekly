@@ -2,45 +2,55 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="12dp">
+    android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/nameView"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="全系BMW 3系闪耀登场"
-        android:textColor="#414141"
-        android:textSize="14sp" />
+        android:padding="12dp">
 
-    <ImageView
-        android:id="@+id/iconView"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_below="@id/nameView"
-        android:layout_marginRight="12dp"
-        android:layout_marginTop="12dp" />
+        <TextView
+            android:id="@+id/nameView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="全系BMW 3系闪耀登场"
+            android:textColor="#414141"
+            android:textSize="14sp" />
 
-    <TextView
-        android:id="@+id/briefView"
+        <ImageView
+            android:id="@+id/iconView"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_below="@id/nameView"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="12dp" />
+
+        <TextView
+            android:id="@+id/briefView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nameView"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_toRightOf="@id/iconView"
+            android:text="新的里程"
+            android:textColor="#666"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/domainView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/briefView"
+            android:layout_toRightOf="@id/iconView"
+            android:text="medium.com"
+            android:textColor="#999"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/nameView"
-        android:layout_marginBottom="12dp"
-        android:layout_marginTop="12dp"
-        android:layout_toRightOf="@id/iconView"
-        android:text="新的里程"
-        android:textColor="#666"
-        android:textSize="12sp" />
-
-    <TextView
-        android:id="@+id/domainView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/briefView"
-        android:layout_toRightOf="@id/iconView"
-        android:text="medium.com"
-        android:textColor="#999"
-        android:textSize="12sp" />
+        android:layout_height="1px"
+        android:layout_alignParentBottom="true"
+        android:background="@color/lineColor" />
 </RelativeLayout>

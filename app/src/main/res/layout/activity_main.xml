@@ -43,13 +43,12 @@
         android:layout_below="@id/brandView"
         android:background="@color/lineColor" />
 
-    <ListView
+    <com.github.mzule.androidweekly.ui.view.PinnedSectionListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/lineView"
-        android:divider="@color/lineColor"
-        android:dividerHeight="1px"
+        android:divider="@null"
         android:overScrollMode="never" />
 
     <com.github.mzule.androidweekly.ui.view.ProgressView
