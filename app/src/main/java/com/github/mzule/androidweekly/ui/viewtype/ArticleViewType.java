@@ -1,4 +1,4 @@
-package com.github.mzule.androidweekly;
+package com.github.mzule.androidweekly.ui.viewtype;
 
 import android.text.TextUtils;
 import android.view.View;
@@ -6,6 +6,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.github.mzule.androidweekly.R;
+import com.github.mzule.androidweekly.entity.Article;
 import com.github.mzule.easyadapter.ViewType;
 
 import butterknife.Bind;

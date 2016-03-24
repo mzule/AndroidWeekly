@@ -1,4 +1,4 @@
-package com.github.mzule.androidweekly;
+package com.github.mzule.androidweekly.api;
 
 /**
  * Created by CaoDongping on 3/24/16.

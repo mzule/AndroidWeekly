@@ -1,7 +1,9 @@
-package com.github.mzule.androidweekly;
+package com.github.mzule.androidweekly.ui.adapter;
 
 import android.content.Context;
 
+import com.github.mzule.androidweekly.entity.Article;
+import com.github.mzule.androidweekly.ui.viewtype.ArticleViewType;
 import com.github.mzule.easyadapter.SingleTypeAdapter;
 import com.github.mzule.easyadapter.ViewType;
 

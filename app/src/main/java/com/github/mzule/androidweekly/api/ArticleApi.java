@@ -1,7 +1,9 @@
-package com.github.mzule.androidweekly;
+package com.github.mzule.androidweekly.api;
 
 
 import android.os.Handler;
+
+import com.github.mzule.androidweekly.entity.Article;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

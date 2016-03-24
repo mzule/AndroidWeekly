@@ -1,4 +1,4 @@
-package com.github.mzule.androidweekly;
+package com.github.mzule.androidweekly.entity;
 
 import java.io.Serializable;
 import java.util.Arrays;

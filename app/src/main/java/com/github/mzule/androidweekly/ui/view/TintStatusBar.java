@@ -1,9 +1,11 @@
-package com.github.mzule.androidweekly;
+package com.github.mzule.androidweekly.ui.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.github.mzule.androidweekly.util.Tinter;
 
 /**
  * 占位符View,在支持Tint的设备上,高度为信号栏的高度,在不支持Tint的设备上,高度为0,可以用来作为UI布局的占位符

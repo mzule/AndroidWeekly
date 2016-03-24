@@ -1,10 +1,17 @@
-package com.github.mzule.androidweekly;
+package com.github.mzule.androidweekly.ui.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
+import com.github.mzule.androidweekly.R;
+import com.github.mzule.androidweekly.api.ApiCallback;
+import com.github.mzule.androidweekly.api.ArticleApi;
+import com.github.mzule.androidweekly.entity.Article;
+import com.github.mzule.androidweekly.ui.adapter.ArticleAdapter;
+import com.github.mzule.androidweekly.util.Tinter;
 
 import java.util.List;
 
