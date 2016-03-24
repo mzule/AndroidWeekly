@@ -9,6 +9,7 @@ import com.github.mzule.androidweekly.api.ApiCallback;
 import com.github.mzule.androidweekly.api.ArticleApi;
 import com.github.mzule.androidweekly.entity.Article;
 import com.github.mzule.androidweekly.ui.adapter.ArticleAdapter;
+import com.github.mzule.androidweekly.ui.view.ProgressView;
 
 import java.util.List;
 
@@ -17,10 +18,12 @@ import butterknife.OnItemClick;
 
 public class MainActivity extends BaseActivity {
 
-    @Bind(R.id.list_view)
+    @Bind(R.id.listView)
     ListView listView;
+    @Bind(R.id.progressView)
+    ProgressView progressView;
 
-    @OnItemClick(R.id.list_view)
+    @OnItemClick(R.id.listView)
     void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Article article = (Article) parent.getAdapter().getItem(position);
         startActivity(ArticleActivity.makeIntent(this, article));
@@ -37,10 +40,12 @@ public class MainActivity extends BaseActivity {
             public void onSuccess(List<Article> data) {
                 adapter.clearAndNotify();
                 adapter.addAndNotify(data);
+                progressView.finish();
             }
 
             @Override
             public void onFailure(Exception e) {
+                progressView.finish();
             }
         });
     }

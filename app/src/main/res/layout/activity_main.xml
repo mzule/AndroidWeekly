@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <com.github.mzule.androidweekly.ui.view.TintStatusBar
+        android:id="@+id/tintBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#fff" />
 
     <LinearLayout
+        android:id="@+id/brandView"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:layout_below="@id/tintBar"
         android:background="#fff"
         android:gravity="center">
 
@@ -34,15 +37,24 @@
     </LinearLayout>
 
     <View
+        android:id="@+id/lineView"
         android:layout_width="match_parent"
         android:layout_height="1px"
+        android:layout_below="@id/brandView"
         android:background="@color/lineColor" />
 
     <ListView
-        android:id="@+id/list_view"
+        android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/lineView"
         android:divider="@color/lineColor"
         android:dividerHeight="1px"
         android:overScrollMode="never" />
-</LinearLayout>
+
+    <com.github.mzule.androidweekly.ui.view.ProgressView
+        android:id="@+id/progressView"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerInParent="true" />
+</RelativeLayout>

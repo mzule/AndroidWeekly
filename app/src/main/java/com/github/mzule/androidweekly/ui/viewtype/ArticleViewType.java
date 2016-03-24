@@ -17,13 +17,13 @@ import butterknife.ButterKnife;
  * Created by CaoDongping on 3/24/16.
  */
 public class ArticleViewType extends ViewType<Article> {
-    @Bind(R.id.name_view)
+    @Bind(R.id.nameView)
     TextView nameView;
-    @Bind(R.id.brief_view)
+    @Bind(R.id.briefView)
     TextView briefView;
-    @Bind(R.id.domain_view)
+    @Bind(R.id.domainView)
     TextView domainView;
-    @Bind(R.id.icon_view)
+    @Bind(R.id.iconView)
     ImageView iconView;
 
     @Override

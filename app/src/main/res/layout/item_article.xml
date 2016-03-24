@@ -7,7 +7,7 @@
     android:padding="12dp">
 
     <TextView
-        android:id="@+id/name_view"
+        android:id="@+id/nameView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="全系BMW 3系闪耀登场"
@@ -15,31 +15,31 @@
         android:textSize="14sp" />
 
     <ImageView
-        android:id="@+id/icon_view"
+        android:id="@+id/iconView"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:layout_below="@id/name_view"
+        android:layout_below="@id/nameView"
         android:layout_marginRight="12dp"
         android:layout_marginTop="12dp" />
 
     <TextView
-        android:id="@+id/brief_view"
+        android:id="@+id/briefView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/name_view"
+        android:layout_below="@id/nameView"
         android:layout_marginBottom="12dp"
         android:layout_marginTop="12dp"
-        android:layout_toRightOf="@id/icon_view"
+        android:layout_toRightOf="@id/iconView"
         android:text="新的里程"
         android:textColor="#666"
         android:textSize="12sp" />
 
     <TextView
-        android:id="@+id/domain_view"
+        android:id="@+id/domainView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/brief_view"
-        android:layout_toRightOf="@id/icon_view"
+        android:layout_below="@id/briefView"
+        android:layout_toRightOf="@id/iconView"
         android:text="medium.com"
         android:textColor="#999"
         android:textSize="12sp" />
