@@ -35,9 +35,9 @@ public class MainActivity extends BaseActivity {
         final ArticleAdapter adapter = new ArticleAdapter(this);
         listView.setAdapter(adapter);
 
-        new ArticleApi().getPage(new ApiCallback<List<Article>>() {
+        new ArticleApi().getPage(new ApiCallback<List<Object>>() {
             @Override
-            public void onSuccess(List<Article> data) {
+            public void onSuccess(List<Object> data) {
                 adapter.clearAndNotify();
                 adapter.addAndNotify(data);
                 progressView.finish();

@@ -22,7 +22,7 @@ public class ArticleApi {
 
     private Handler handler = new Handler();
 
-    public void getPage(final ApiCallback<List<Article>> callback) {
+    public void getPage(final ApiCallback<List<Object>> callback) {
         new Thread() {
             @Override
             public void run() {
@@ -31,41 +31,35 @@ public class ArticleApi {
         }.start();
     }
 
-    private void doGetPage(final ApiCallback<List<Article>> callback) {
+    private void doGetPage(final ApiCallback<List<Object>> callback) {
         try {
             Document doc = Jsoup.parse(new URL("http://androidweekly.net"), 30000);
             Elements tables = doc.getElementsByTag("table");
-            List<Element> articles = new ArrayList<>();
-            for (Element element : tables) {
-                String text = element.text().trim();
-                if (text.length() < 50 && text.contains("Articles & Tutorials")) {
-                    continue;
-                }
-                if (text.length() < 50 && text.contains("Sponsored")) {
-                    break;
-                }
-                articles.add(element);
-            }
 
-            final List<Article> list = new ArrayList<>();
+            final List<Object> articles = new ArrayList<>();
 
-            for (Element e : articles) {
-                Elements tds = e.getElementsByTag("td");
-                Element td = tds.get(tds.size() - 2);
-                String imageUrl = null;
-                if (tds.size() == 4) {
-                    imageUrl = tds.get(0).getElementsByTag("img").get(0).attr("src");
+            for (Element e : tables) {
+                Elements h2 = e.getElementsByTag("h2");
+                if (!h2.isEmpty()) {
+                    articles.add(h2.get(0).text());
+                } else {
+                    Elements tds = e.getElementsByTag("td");
+                    Element td = tds.get(tds.size() - 2);
+                    String imageUrl = null;
+                    if (tds.size() == 4) {
+                        imageUrl = tds.get(0).getElementsByTag("img").get(0).attr("src");
+                    }
+                    String title = td.getElementsByClass("article-headline").get(0).text();
+                    String brief = td.getElementsByTag("p").get(0).text();
+                    String link = td.getElementsByClass("article-headline").get(0).attr("href");
+                    String domain = td.getElementsByTag("span").get(0).text();
+                    articles.add(new Article(title, brief, link, imageUrl, domain));
                 }
-                String title = td.getElementsByClass("article-headline").get(0).text();
-                String brief = td.getElementsByTag("p").get(0).text();
-                String link = td.getElementsByClass("article-headline").get(0).attr("href");
-                String domain = td.getElementsByTag("span").get(0).text();
-                list.add(new Article(title, brief, link, imageUrl, domain));
             }
             handler.post(new Runnable() {
                 @Override
                 public void run() {
-                    callback.onSuccess(list);
+                    callback.onSuccess(articles);
                 }
             });
         } catch (final IOException e) {

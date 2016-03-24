@@ -4,20 +4,22 @@ import android.content.Context;
 
 import com.github.mzule.androidweekly.entity.Article;
 import com.github.mzule.androidweekly.ui.viewtype.ArticleViewType;
-import com.github.mzule.easyadapter.SingleTypeAdapter;
-import com.github.mzule.easyadapter.ViewType;
+import com.github.mzule.androidweekly.ui.viewtype.SectionViewType;
+import com.github.mzule.easyadapter.TypePerEntityAdapter;
 
 /**
  * Created by CaoDongping on 3/24/16.
  */
-public class ArticleAdapter extends SingleTypeAdapter<Article> {
+public class ArticleAdapter extends TypePerEntityAdapter<Object> {
 
     public ArticleAdapter(Context context) {
         super(context);
     }
 
     @Override
-    protected Class<? extends ViewType> singleViewType() {
-        return ArticleViewType.class;
+    protected void mapEntityViewTypes() {
+        mapEntityViewType(String.class, SectionViewType.class);
+        mapEntityViewType(Article.class, ArticleViewType.class);
     }
+
 }
