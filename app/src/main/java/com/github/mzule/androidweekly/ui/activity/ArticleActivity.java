@@ -1,5 +1,6 @@
 package com.github.mzule.androidweekly.ui.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.webkit.WebView;
@@ -26,6 +27,7 @@ public class ArticleActivity extends BaseActivity {
         return intent;
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void afterInject() {
         Article article = (Article) getIntent().getSerializableExtra("article");
@@ -37,6 +39,7 @@ public class ArticleActivity extends BaseActivity {
             }
         });
         webView.getSettings().setTextZoom(78);
+        webView.getSettings().setJavaScriptEnabled(true);
     }
 
     @Override
