@@ -40,20 +40,10 @@ public class MainActivity extends BaseActivity {
         active(issue);
         slideAdapter.notifyDataSetChanged();
 
+        sendRequest(issue.getName());
+
         drawerLayout.closeDrawers();
         progressView.start();
-        new ArticleApi().getPage(issue.getName(), new ApiCallback<List<Object>>() {
-            @Override
-            public void onSuccess(List<Object> data) {
-                adapter.clear();
-                adapter.addAndNotify(data);
-                progressView.finish();
-            }
-
-            @Override
-            public void onFailure(Exception e) {
-            }
-        });
     }
 
     @OnItemClick(R.id.listView)
@@ -70,7 +60,7 @@ public class MainActivity extends BaseActivity {
         slideAdapter = new SlideAdapter(this);
         slideListView.setAdapter(slideAdapter);
 
-        sendRequest();
+        sendRequest(null);
     }
 
 
@@ -80,20 +70,23 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    private void sendRequest() {
-        new ArticleApi().getPage(new ApiCallback<List<Object>>() {
+    private void sendRequest(String issue) {
+        new ArticleApi().getPage(issue, new ApiCallback<List<Object>>() {
             @Override
             public void onSuccess(List<Object> data) {
                 adapter.clear();
                 adapter.addAndNotify(data);
+                listView.setSelection(0);
                 progressView.finish();
 
-                issues = new ArrayList<>();
-                for (int i = 197; i > 0; i--) {
-                    issues.add(new Issue("issue-" + i, i == 197));
+                if (issues == null) {
+                    issues = new ArrayList<>();
+                    for (int i = 197; i > 0; i--) {
+                        issues.add(new Issue("issue-" + i, i == 197));
+                    }
+                    slideAdapter.clear();
+                    slideAdapter.addAndNotify(issues);
                 }
-                slideAdapter.clear();
-                slideAdapter.addAndNotify(issues);
             }
 
             @Override
