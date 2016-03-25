@@ -40,6 +40,13 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
+        <ImageView
+            android:id="@+id/slideMenuButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tintBar"
+            android:src="@drawable/ic_slide_menu" />
+
         <View
             android:id="@+id/lineView"
             android:layout_width="match_parent"

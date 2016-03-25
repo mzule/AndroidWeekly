@@ -1,6 +1,7 @@
 package com.github.mzule.androidweekly.ui.activity;
 
 import android.support.v4.widget.DrawerLayout;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
+import butterknife.OnClick;
 import butterknife.OnItemClick;
 
 public class MainActivity extends BaseActivity {
@@ -51,6 +53,11 @@ public class MainActivity extends BaseActivity {
         Article article = (Article) parent.getAdapter().getItem(position);
         startActivity(ArticleActivity.makeIntent(this, article));
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
+
+    @OnClick(R.id.slideMenuButton)
+    void onSlideMenuClick() {
+        drawerLayout.openDrawer(Gravity.LEFT);
     }
 
     @Override
