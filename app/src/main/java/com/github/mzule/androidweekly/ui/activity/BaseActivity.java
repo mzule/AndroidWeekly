@@ -22,7 +22,7 @@ public abstract class BaseActivity extends SwipeBackActivity {
     }
 
     protected boolean enableSwipeBack() {
-        return true;
+        return false;
     }
 
     protected abstract void afterInject();
