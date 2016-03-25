@@ -22,18 +22,26 @@ public class ArticleApi {
 
     private Handler handler = new Handler();
 
-    public void getPage(final ApiCallback<List<Object>> callback) {
+    public void getPage(ApiCallback<List<Object>> callback) {
+        getPage(null, callback);
+    }
+
+    public void getPage(final String issue, final ApiCallback<List<Object>> callback) {
         new Thread() {
             @Override
             public void run() {
-                doGetPage(callback);
+                doGetPage(issue, callback);
             }
         }.start();
     }
 
-    private void doGetPage(final ApiCallback<List<Object>> callback) {
+    private void doGetPage(String issue, final ApiCallback<List<Object>> callback) {
         try {
-            Document doc = Jsoup.parse(new URL("http://androidweekly.net"), 30000);
+            String url = "http://androidweekly.net";
+            if (issue != null) {
+                url += "/issues/" + issue;
+            }
+            Document doc = Jsoup.parse(new URL(url), 30000);
             Elements tables = doc.getElementsByTag("table");
 
             final List<Object> articles = new ArrayList<>();

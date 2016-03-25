@@ -1,59 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <com.github.mzule.androidweekly.ui.view.TintStatusBar
-        android:id="@+id/tintBar"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#fff" />
+        android:layout_height="match_parent">
+
+        <com.github.mzule.androidweekly.ui.view.TintStatusBar
+            android:id="@+id/tintBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff" />
+
+        <LinearLayout
+            android:id="@+id/brandView"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@id/tintBar"
+            android:background="#fff"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ANDROID"
+                android:textColor="#36bce8"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:text="WEEKLY"
+                android:textColor="#464646"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/lineView"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_below="@id/brandView"
+            android:background="@color/lineColor" />
+
+        <com.github.mzule.androidweekly.ui.view.PinnedSectionListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/lineView"
+            android:divider="@null"
+            android:overScrollMode="never" />
+
+        <com.github.mzule.androidweekly.ui.view.ProgressView
+            android:id="@+id/progressView"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
 
     <LinearLayout
-        android:id="@+id/brandView"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_below="@id/tintBar"
-        android:background="#fff"
-        android:gravity="center">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ANDROID"
-            android:textColor="#36bce8"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="4dp"
-            android:text="WEEKLY"
-            android:textColor="#464646"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-    </LinearLayout>
-
-    <View
-        android:id="@+id/lineView"
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:layout_below="@id/brandView"
-        android:background="@color/lineColor" />
-
-    <com.github.mzule.androidweekly.ui.view.PinnedSectionListView
-        android:id="@+id/listView"
-        android:layout_width="match_parent"
+        android:id="@+id/slideView"
+        android:layout_width="240dp"
         android:layout_height="match_parent"
-        android:layout_below="@id/lineView"
-        android:divider="@null"
-        android:overScrollMode="never" />
+        android:layout_gravity="start"
+        android:background="#fff"
+        android:orientation="vertical">
 
-    <com.github.mzule.androidweekly.ui.view.ProgressView
-        android:id="@+id/progressView"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_centerInParent="true" />
-</RelativeLayout>
+        <com.github.mzule.androidweekly.ui.view.TintStatusBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/lineColor" />
+
+        <ListView
+            android:id="@+id/slideListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null"
+            android:overScrollMode="never"
+            android:scrollbars="none" />
+    </LinearLayout>
+</android.support.v4.widget.DrawerLayout>

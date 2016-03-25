@@ -93,6 +93,10 @@ public class ProgressView extends SurfaceView implements SurfaceHolder.Callback 
         }
     }
 
+    public void start() {
+        setVisibility(VISIBLE);
+    }
+
     public void finish() {
         setVisibility(View.GONE);
     }

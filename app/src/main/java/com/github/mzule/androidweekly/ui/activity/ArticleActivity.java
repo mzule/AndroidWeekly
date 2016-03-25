@@ -36,6 +36,7 @@ public class ArticleActivity extends BaseActivity {
                 progressView.finish();
             }
         });
+        webView.getSettings().setTextZoom(78);
     }
 
     @Override

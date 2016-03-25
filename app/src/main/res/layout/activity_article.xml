@@ -10,16 +10,16 @@
         android:layout_height="wrap_content"
         android:background="#fff" />
 
+    <com.github.mzule.androidweekly.ui.view.ProgressView
+        android:id="@+id/progressView"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerInParent="true" />
+
     <WebView
         android:id="@+id/webView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/tintBar"
         android:overScrollMode="never" />
-
-    <com.github.mzule.androidweekly.ui.view.ProgressView
-        android:id="@+id/progressView"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_centerInParent="true" />
 </RelativeLayout>
