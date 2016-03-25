@@ -50,6 +50,7 @@ public class MainActivity extends BaseActivity {
     void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Article article = (Article) parent.getAdapter().getItem(position);
         startActivity(ArticleActivity.makeIntent(this, article));
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     @Override
@@ -99,5 +100,10 @@ public class MainActivity extends BaseActivity {
     @Override
     protected int getLayoutResourceId() {
         return R.layout.activity_main;
+    }
+
+    @Override
+    protected boolean enableSwipeBack() {
+        return false;
     }
 }
