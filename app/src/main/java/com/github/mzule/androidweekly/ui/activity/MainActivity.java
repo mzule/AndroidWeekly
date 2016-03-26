@@ -122,4 +122,13 @@ public class MainActivity extends BaseActivity {
     protected boolean enableSwipeBack() {
         return false;
     }
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawers();
+        } else {
+            super.onBackPressed();
+        }
+    }
 }
