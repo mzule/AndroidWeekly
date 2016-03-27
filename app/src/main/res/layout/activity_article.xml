@@ -38,28 +38,28 @@
 
         <View style="@style/HorizontalLine" />
 
-        <net.steamcrafted.materialiconlib.MaterialIconView
+        <com.github.mzule.androidweekly.ui.view.SlideIconView
             android:id="@+id/favoriteButton"
             style="@style/SlideControl"
             app:materialIcon="star_outline" />
 
         <View style="@style/HorizontalLine" />
 
-        <net.steamcrafted.materialiconlib.MaterialIconView
+        <com.github.mzule.androidweekly.ui.view.SlideIconView
             android:id="@+id/increaseButton"
             style="@style/SlideControl"
             app:materialIcon="plus" />
 
         <View style="@style/HorizontalLine" />
 
-        <net.steamcrafted.materialiconlib.MaterialIconView
+        <com.github.mzule.androidweekly.ui.view.SlideIconView
             android:id="@+id/decreaseButton"
             style="@style/SlideControl"
             app:materialIcon="minus" />
 
         <View style="@style/HorizontalLine" />
 
-        <net.steamcrafted.materialiconlib.MaterialIconView
+        <com.github.mzule.androidweekly.ui.view.SlideIconView
             android:id="@+id/shareButton"
             style="@style/SlideControl"
             app:materialIcon="share" />
