@@ -83,7 +83,7 @@ public class MainActivity extends BaseActivity {
     private void sendArticleListRequest(String issue) {
         articleApi.getPage(issue, new ApiCallback<List<Object>>() {
             @Override
-            public void onSuccess(List<Object> data) {
+            public void onSuccess(List<Object> data, boolean fromCache) {
                 adapter.clear();
                 adapter.addAndNotify(data);
                 listView.setSelection(0);
@@ -100,7 +100,7 @@ public class MainActivity extends BaseActivity {
     private void sendIssueListRequest() {
         articleApi.getArchive(new ApiCallback<List<Issue>>() {
             @Override
-            public void onSuccess(List<Issue> data) {
+            public void onSuccess(List<Issue> data, boolean fromCache) {
                 issues = data;
                 slideAdapter.clear();
                 slideAdapter.addAndNotify(issues);

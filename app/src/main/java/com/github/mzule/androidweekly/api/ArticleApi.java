@@ -50,7 +50,7 @@ public class ArticleApi {
         }.start();
     }
 
-    private List<Issue> doGetArchive() throws Exception {
+    private Response<List<Issue>> doGetArchive() throws Exception {
         Document doc = Jsoup.parse(new URL("http://androidweekly.net/archive"), 30000);
         Elements lis = doc.getElementsByClass("archive-list").get(0).getElementsByTag("li");
         List<Issue> issues = new ArrayList<>();
@@ -60,10 +60,10 @@ public class ArticleApi {
             String url = li.getElementsByTag("a").attr("href");
             issues.add(new Issue(name, url, date));
         }
-        return issues;
+        return new Response<>(issues, false);
     }
 
-    private List<Object> doGetPage(String issue) throws Exception {
+    private Response<List<Object>> doGetPage(String issue) throws Exception {
         String url = "http://androidweekly.net";
         if (issue != null) {
             url += issue;
@@ -91,14 +91,14 @@ public class ArticleApi {
                 articles.add(new Article(title, brief, link, imageUrl, domain));
             }
         }
-        return articles;
+        return new Response<>(articles, false);
     }
 
-    private <T> void postSuccess(final T result, final ApiCallback<T> callback) {
+    private <T> void postSuccess(final Response<T> result, final ApiCallback<T> callback) {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                callback.onSuccess(result);
+                callback.onSuccess(result.data, result.fromCache);
             }
         });
     }
@@ -111,5 +111,15 @@ public class ArticleApi {
                 callback.onFailure(e);
             }
         });
+    }
+
+    static class Response<T> {
+        public T data;
+        public boolean fromCache;
+
+        public Response(T data, boolean fromCache) {
+            this.data = data;
+            this.fromCache = fromCache;
+        }
     }
 }

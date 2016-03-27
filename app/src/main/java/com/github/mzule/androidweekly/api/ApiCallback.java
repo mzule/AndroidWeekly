@@ -5,7 +5,7 @@ package com.github.mzule.androidweekly.api;
  */
 public interface ApiCallback<T> {
 
-    void onSuccess(T data);
+    void onSuccess(T data, boolean fromCache);
 
     void onFailure(Exception e);
 
