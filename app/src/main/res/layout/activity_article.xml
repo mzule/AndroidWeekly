@@ -36,24 +36,35 @@
         android:gravity="center_vertical"
         android:orientation="vertical">
 
+        <View style="@style/HorizontalLine" />
+
         <net.steamcrafted.materialiconlib.MaterialIconView
             android:id="@+id/favoriteButton"
             style="@style/SlideControl"
             app:materialIcon="star_outline" />
+
+        <View style="@style/HorizontalLine" />
 
         <net.steamcrafted.materialiconlib.MaterialIconView
             android:id="@+id/increaseButton"
             style="@style/SlideControl"
             app:materialIcon="plus" />
 
+        <View style="@style/HorizontalLine" />
+
         <net.steamcrafted.materialiconlib.MaterialIconView
             android:id="@+id/decreaseButton"
             style="@style/SlideControl"
             app:materialIcon="minus" />
 
+        <View style="@style/HorizontalLine" />
+
         <net.steamcrafted.materialiconlib.MaterialIconView
             android:id="@+id/shareButton"
             style="@style/SlideControl"
             app:materialIcon="share" />
+
+        <View style="@style/HorizontalLine" />
+
     </LinearLayout>
 </android.support.v4.widget.DrawerLayout>

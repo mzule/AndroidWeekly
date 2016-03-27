@@ -29,4 +29,10 @@
         <item name="android:background">@drawable/bg_button</item>
     </style>
 
+    <style name="HorizontalLine">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/lineColor</item>
+    </style>
+
 </resources>
