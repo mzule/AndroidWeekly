@@ -1,25 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <com.github.mzule.androidweekly.ui.view.TintStatusBar
-        android:id="@+id/tintBar"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#fff" />
+        android:layout_height="match_parent">
 
-    <com.github.mzule.androidweekly.ui.view.ProgressView
-        android:id="@+id/progressView"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_centerInParent="true" />
+        <com.github.mzule.androidweekly.ui.view.TintStatusBar
+            android:id="@+id/tintBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff" />
 
-    <WebView
-        android:id="@+id/webView"
-        android:layout_width="match_parent"
+        <com.github.mzule.androidweekly.ui.view.ProgressView
+            android:id="@+id/progressView"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true" />
+
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/tintBar"
+            android:overScrollMode="never" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_below="@id/tintBar"
-        android:overScrollMode="never" />
-</RelativeLayout>
+        android:layout_gravity="start"
+        android:background="#fff"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <net.steamcrafted.materialiconlib.MaterialIconView
+            android:id="@+id/favoriteButton"
+            style="@style/SlideControl"
+            app:materialIcon="star_outline" />
+
+        <net.steamcrafted.materialiconlib.MaterialIconView
+            android:id="@+id/increaseButton"
+            style="@style/SlideControl"
+            app:materialIcon="plus" />
+
+        <net.steamcrafted.materialiconlib.MaterialIconView
+            android:id="@+id/decreaseButton"
+            style="@style/SlideControl"
+            app:materialIcon="minus" />
+
+        <net.steamcrafted.materialiconlib.MaterialIconView
+            android:id="@+id/shareButton"
+            style="@style/SlideControl"
+            app:materialIcon="share" />
+    </LinearLayout>
+</android.support.v4.widget.DrawerLayout>

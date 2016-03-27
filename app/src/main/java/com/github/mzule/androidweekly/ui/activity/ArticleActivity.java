@@ -11,6 +11,7 @@ import com.github.mzule.androidweekly.entity.Article;
 import com.github.mzule.androidweekly.ui.view.ProgressView;
 
 import butterknife.Bind;
+import butterknife.OnClick;
 
 /**
  * Created by CaoDongping on 3/24/16.
@@ -27,6 +28,16 @@ public class ArticleActivity extends BaseActivity {
         return intent;
     }
 
+    @OnClick(R.id.increaseButton)
+    void increate() {
+        webView.getSettings().setTextZoom(webView.getSettings().getTextZoom() + 5);
+    }
+
+    @OnClick(R.id.decreaseButton)
+    void decrease() {
+        webView.getSettings().setTextZoom(webView.getSettings().getTextZoom() - 5);
+    }
+
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void afterInject() {
@@ -38,7 +49,7 @@ public class ArticleActivity extends BaseActivity {
                 progressView.finish();
             }
         });
-        webView.getSettings().setTextZoom(78);
+        webView.getSettings().setTextZoom(75);
         webView.getSettings().setJavaScriptEnabled(true);
     }
 
