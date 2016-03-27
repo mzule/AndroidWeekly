@@ -21,8 +21,8 @@
     </style>
 
     <style name="SlideControl">
-        <item name="android:layout_width">60dp</item>
-        <item name="android:layout_height">60dp</item>
+        <item name="android:layout_width">55dp</item>
+        <item name="android:layout_height">55dp</item>
         <item name="android:scaleType">center</item>
         <item name="materialIconColor">@color/colorPrimary</item>
         <item name="materialIconSize">22dp</item>
