@@ -119,11 +119,6 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    protected boolean enableSwipeBack() {
-        return false;
-    }
-
-    @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawers();

@@ -10,16 +10,16 @@ import net.steamcrafted.materialiconlib.MaterialIconView;
 /**
  * Created by CaoDongping on 3/27/16.
  */
-public class SlideIconView extends MaterialIconView {
-    public SlideIconView(Context context) {
+public class IconButton extends MaterialIconView {
+    public IconButton(Context context) {
         super(context);
     }
 
-    public SlideIconView(Context context, AttributeSet attrs) {
+    public IconButton(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public SlideIconView(Context context, AttributeSet attrs, int defStyle) {
+    public IconButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
