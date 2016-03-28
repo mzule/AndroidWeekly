@@ -5,10 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.github.mzule.androidweekly.R;
+import com.github.mzule.androidweekly.dao.TextZoomKeeper;
 import com.github.mzule.androidweekly.entity.Article;
 import com.github.mzule.androidweekly.ui.view.ProgressView;
 
@@ -26,6 +28,7 @@ public class ArticleActivity extends BaseActivity {
     @Bind(R.id.drawerLayout)
     DrawerLayout drawerLayout;
     private Article article;
+    private WebSettings settings;
 
     public static Intent makeIntent(Context context, Article article) {
         Intent intent = new Intent(context, ArticleActivity.class);
@@ -35,12 +38,12 @@ public class ArticleActivity extends BaseActivity {
 
     @OnClick(R.id.increaseButton)
     void increate() {
-        webView.getSettings().setTextZoom(webView.getSettings().getTextZoom() + 5);
+        settings.setTextZoom(settings.getTextZoom() + 5);
     }
 
     @OnClick(R.id.decreaseButton)
     void decrease() {
-        webView.getSettings().setTextZoom(webView.getSettings().getTextZoom() - 5);
+        settings.setTextZoom(settings.getTextZoom() - 5);
     }
 
     @OnClick(R.id.shareButton)
@@ -57,6 +60,7 @@ public class ArticleActivity extends BaseActivity {
     @Override
     protected void afterInject() {
         article = (Article) getIntent().getSerializableExtra("article");
+        settings = webView.getSettings();
         webView.loadUrl(article.getLink());
         webView.setWebViewClient(new WebViewClient() {
             @Override
@@ -64,8 +68,14 @@ public class ArticleActivity extends BaseActivity {
                 progressView.finish();
             }
         });
-        webView.getSettings().setTextZoom(75);
-        webView.getSettings().setJavaScriptEnabled(true);
+        settings.setTextZoom(TextZoomKeeper.read(settings.getTextZoom()));
+        settings.setJavaScriptEnabled(true);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        TextZoomKeeper.save(settings.getTextZoom());
     }
 
     @Override
