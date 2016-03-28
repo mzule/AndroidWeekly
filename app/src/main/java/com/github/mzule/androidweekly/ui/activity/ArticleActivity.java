@@ -33,6 +33,7 @@ public class ArticleActivity extends BaseActivity {
     View favoriteButton;
     private Article article;
     private WebSettings settings;
+    private boolean changed;
 
     public static Intent makeIntent(Context context, Article article) {
         Intent intent = new Intent(context, ArticleActivity.class);
@@ -42,6 +43,7 @@ public class ArticleActivity extends BaseActivity {
 
     @OnClick(R.id.favoriteButton)
     void favorite(View v) {
+        changed = true;
         v.setSelected(!v.isSelected());
         if (v.isSelected()) {
             FavoriteKeeper.save(article);
@@ -84,7 +86,7 @@ public class ArticleActivity extends BaseActivity {
         });
         settings.setTextZoom(TextZoomKeeper.read(settings.getTextZoom()));
         settings.setJavaScriptEnabled(true);
-        favoriteButton.setSelected(FavoriteKeeper.read().contains(article));
+        favoriteButton.setSelected(FavoriteKeeper.contains(article));
     }
 
     @Override
@@ -102,7 +104,7 @@ public class ArticleActivity extends BaseActivity {
     @Override
     public void finish() {
         Intent intent = new Intent();
-        intent.putExtra("article", article);
+        intent.putExtra("changed", changed);
         setResult(RESULT_OK, intent);
         super.finish();
     }

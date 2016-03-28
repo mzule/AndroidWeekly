@@ -5,10 +5,14 @@ import android.content.SharedPreferences;
 
 import com.github.mzule.androidweekly.App;
 import com.github.mzule.androidweekly.entity.Article;
+import com.github.mzule.androidweekly.entity.Favorite;
 import com.github.mzule.androidweekly.util.JsonUtil;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -16,29 +20,49 @@ import java.util.List;
  */
 public class FavoriteKeeper {
 
-    public static List<Article> read() {
-        String json = getSharedPreferences().getString("articles", null);
-        List<Article> articles = JsonUtil.fromJson(json, new TypeToken<List<Article>>() {
+    public static List<Favorite> read() {
+        String json = getSharedPreferences().getString("favorites", null);
+        List<Favorite> favorites = JsonUtil.fromJson(json, new TypeToken<List<Favorite>>() {
         }.getType());
-        return articles == null ? new ArrayList<Article>() : articles;
+        return favorites == null ? new ArrayList<Favorite>() : favorites;
+    }
+
+    public static boolean contains(Article article) {
+        return read().contains(new Favorite(article));
     }
 
     public static void save(Article article) {
-        List<Article> articles = read();
-        if (!articles.contains(article)) {
-            articles.add(0, article);
-            save(articles);
-        }
+        save(new Favorite(article));
     }
 
     public static void delete(Article article) {
-        List<Article> articles = read();
-        articles.remove(article);
-        save(articles);
+        List<Favorite> favorites = read();
+        Iterator<Favorite> iterator = favorites.iterator();
+        while (iterator.hasNext()) {
+            if (iterator.next().getArticle().equals(article)) {
+                iterator.remove();
+                break;
+            }
+        }
+        save(favorites);
     }
 
-    private static void save(List<Article> articles) {
-        getSharedPreferences().edit().putString("articles", JsonUtil.toJson(articles)).apply();
+    private static void save(Favorite favorite) {
+        List<Favorite> favorites = read();
+        if (!favorites.contains(favorite)) {
+            favorites.add(0, favorite);
+            save(favorites);
+        }
+    }
+
+    private static void save(List<Favorite> favorites) {
+        Collections.sort(favorites, new Comparator<Favorite>() {
+            @Override
+            public int compare(Favorite lhs, Favorite rhs) {
+                return lhs.getTime() - rhs.getTime() > 0 ? -1 : 1;
+            }
+        });
+        getSharedPreferences().edit().putString("favorites", JsonUtil.toJson(favorites)).apply();
     }
 
     private static SharedPreferences getSharedPreferences() {
