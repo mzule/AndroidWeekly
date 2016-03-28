@@ -3,6 +3,7 @@ package com.github.mzule.androidweekly.ui.activity;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -84,4 +85,13 @@ public class ArticleActivity extends BaseActivity {
         return R.layout.activity_article;
     }
 
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawers();
+        } else {
+            super.onBackPressed();
+        }
+    }
 }
