@@ -50,6 +50,7 @@ public class ArticleActivity extends BaseActivity {
         } else {
             FavoriteKeeper.delete(article);
         }
+        drawerLayout.closeDrawers();
     }
 
     @OnClick(R.id.increaseButton)
