@@ -41,13 +41,9 @@
         </LinearLayout>
 
         <com.github.mzule.androidweekly.ui.view.IconButton
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            style="@style/SmallControl"
             android:onClick="back"
-            android:scaleType="center"
-            app:materialIcon="arrow_left"
-            app:materialIconColor="@color/colorPrimary"
-            app:materialIconSize="22dp" />
+            app:materialIcon="arrow_left" />
     </RelativeLayout>
 
     <View style="@style/HorizontalLine" />

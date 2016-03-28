@@ -43,14 +43,9 @@
 
         <com.github.mzule.androidweekly.ui.view.IconButton
             android:id="@+id/slideMenuButton"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            style="@style/SmallControl"
             android:layout_below="@id/tintBar"
-            android:scaleType="center"
-            android:src="@drawable/ic_slide_menu"
-            app:materialIcon="menu"
-            app:materialIconColor="@color/colorPrimary"
-            app:materialIconSize="22dp" />
+            app:materialIcon="menu" />
 
         <View
             android:id="@+id/lineView"
@@ -111,7 +106,7 @@
 
             <com.github.mzule.androidweekly.ui.view.IconButton
                 android:id="@+id/favoriteButton"
-                style="@style/SlideControl"
+                style="@style/NormalControl"
                 app:materialIcon="star" />
         </LinearLayout>
     </LinearLayout>

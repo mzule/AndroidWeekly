@@ -65,7 +65,7 @@ public class ArticleActivity extends BaseActivity {
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.putExtra(Intent.EXTRA_TEXT, article.getTitle() + " " + article.getLink());
         intent.setType("text/plain");
-        startActivity(intent);
+        startActivity(Intent.createChooser(intent, "SHARE"));
 
         drawerLayout.closeDrawers();
     }
