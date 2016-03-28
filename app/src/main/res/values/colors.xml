@@ -8,4 +8,5 @@
     <color name="transparent">#00000000</color>
     <color name="bg">#fcfcfc</color>
     <color name="white">#ffffff</color>
+    <color name="slideBg">#eeffffff</color>
 </resources>

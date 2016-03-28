@@ -74,7 +74,7 @@
         android:layout_width="240dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="#fff"
+        android:background="@color/slideBg"
         android:orientation="vertical">
 
         <com.github.mzule.androidweekly.ui.view.TintStatusBar
