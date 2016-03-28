@@ -21,6 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.activity.ArticleActivity" />
+        <activity android:name=".ui.activity.FavoriteActivity" />
     </application>
 
 </manifest>

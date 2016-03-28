@@ -101,8 +101,10 @@ public class ArticleActivity extends BaseActivity {
 
     @Override
     public void finish() {
+        Intent intent = new Intent();
+        intent.putExtra("article", article);
+        setResult(RESULT_OK, intent);
         super.finish();
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
     @Override

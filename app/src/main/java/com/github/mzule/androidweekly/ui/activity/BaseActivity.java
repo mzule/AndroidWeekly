@@ -2,6 +2,7 @@ package com.github.mzule.androidweekly.ui.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.View;
 
 import com.github.mzule.androidweekly.util.Tinter;
 
@@ -18,6 +19,10 @@ public abstract class BaseActivity extends FragmentActivity {
         ButterKnife.bind(this);
         Tinter.enableIfSupport(this);
         afterInject();
+    }
+
+    public void back(View v) {
+        onBackPressed();
     }
 
     protected abstract void afterInject();

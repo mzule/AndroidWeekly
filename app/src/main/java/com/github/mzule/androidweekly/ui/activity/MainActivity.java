@@ -52,12 +52,17 @@ public class MainActivity extends BaseActivity {
     void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Article article = (Article) parent.getAdapter().getItem(position);
         startActivity(ArticleActivity.makeIntent(this, article));
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     @OnClick(R.id.slideMenuButton)
     void onSlideMenuClick() {
         drawerLayout.openDrawer(GravityCompat.START);
+    }
+
+    @OnClick(R.id.favoriteButton)
+    void onFavoriteClick() {
+        startActivity(FavoriteActivity.makeIntent(this));
+        drawerLayout.closeDrawers();
     }
 
     @Override
