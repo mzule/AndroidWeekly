@@ -65,4 +65,18 @@ public class Article implements Serializable {
     public String toString() {
         return Arrays.toString(new String[]{title, "\n", brief, "\n", link, "\n", imageUrl, "\n", domain, "\n", "\n"});
     }
+
+    @Override
+    public int hashCode() {
+        return link == null ? 0 : link.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Article) {
+            Article other = (Article) o;
+            return link == null ? other.link == null : link.equals(other.link);
+        }
+        return false;
+    }
 }

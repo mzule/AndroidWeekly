@@ -29,9 +29,21 @@ public class IconButton extends MaterialIconView {
         if (pressed) {
             setColor(getResources().getColor(R.color.white));
             setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-        } else {
+        } else if (!isSelected()) {
             setColor(getResources().getColor(R.color.colorPrimary));
             setBackgroundColor(getResources().getColor(R.color.transparent));
+        }
+    }
+
+    @Override
+    public void setSelected(boolean selected) {
+        super.setSelected(selected);
+        if (selected) {
+            setColor(getResources().getColor(R.color.white));
+            setBackgroundResource(R.color.colorPrimary);
+        } else {
+            setColor(getResources().getColor(R.color.colorPrimary));
+            setBackgroundResource(R.color.transparent);
         }
     }
 }

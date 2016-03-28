@@ -5,11 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.github.mzule.androidweekly.R;
+import com.github.mzule.androidweekly.dao.FavoriteKeeper;
 import com.github.mzule.androidweekly.dao.TextZoomKeeper;
 import com.github.mzule.androidweekly.entity.Article;
 import com.github.mzule.androidweekly.ui.view.ProgressView;
@@ -27,6 +29,8 @@ public class ArticleActivity extends BaseActivity {
     ProgressView progressView;
     @Bind(R.id.drawerLayout)
     DrawerLayout drawerLayout;
+    @Bind(R.id.favoriteButton)
+    View favoriteButton;
     private Article article;
     private WebSettings settings;
 
@@ -34,6 +38,16 @@ public class ArticleActivity extends BaseActivity {
         Intent intent = new Intent(context, ArticleActivity.class);
         intent.putExtra("article", article);
         return intent;
+    }
+
+    @OnClick(R.id.favoriteButton)
+    void favorite(View v) {
+        v.setSelected(!v.isSelected());
+        if (v.isSelected()) {
+            FavoriteKeeper.save(article);
+        } else {
+            FavoriteKeeper.delete(article);
+        }
     }
 
     @OnClick(R.id.increaseButton)
@@ -70,6 +84,7 @@ public class ArticleActivity extends BaseActivity {
         });
         settings.setTextZoom(TextZoomKeeper.read(settings.getTextZoom()));
         settings.setJavaScriptEnabled(true);
+        favoriteButton.setSelected(FavoriteKeeper.read().contains(article));
     }
 
     @Override

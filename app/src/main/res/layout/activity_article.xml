@@ -42,7 +42,7 @@
         <com.github.mzule.androidweekly.ui.view.IconButton
             android:id="@+id/favoriteButton"
             style="@style/SlideControl"
-            app:materialIcon="star_outline" />
+            app:materialIcon="star" />
 
         <View style="@style/HorizontalLine" />
 
