@@ -3,6 +3,7 @@ package com.github.mzule.androidweekly.ui.activity;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.widget.DrawerLayout;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -21,6 +22,9 @@ public class ArticleActivity extends BaseActivity {
     WebView webView;
     @Bind(R.id.progressView)
     ProgressView progressView;
+    @Bind(R.id.drawerLayout)
+    DrawerLayout drawerLayout;
+    private Article article;
 
     public static Intent makeIntent(Context context, Article article) {
         Intent intent = new Intent(context, ArticleActivity.class);
@@ -38,10 +42,20 @@ public class ArticleActivity extends BaseActivity {
         webView.getSettings().setTextZoom(webView.getSettings().getTextZoom() - 5);
     }
 
+    @OnClick(R.id.shareButton)
+    void share() {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_TEXT, article.getTitle() + " " + article.getLink());
+        intent.setType("text/plain");
+        startActivity(intent);
+
+        drawerLayout.closeDrawers();
+    }
+
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void afterInject() {
-        Article article = (Article) getIntent().getSerializableExtra("article");
+        article = (Article) getIntent().getSerializableExtra("article");
         webView.loadUrl(article.getLink());
         webView.setWebViewClient(new WebViewClient() {
             @Override
@@ -69,4 +83,5 @@ public class ArticleActivity extends BaseActivity {
     protected int getLayoutResourceId() {
         return R.layout.activity_article;
     }
+
 }
