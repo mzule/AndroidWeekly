@@ -80,6 +80,13 @@
         <View style="@style/HorizontalLine" />
 
         <com.github.mzule.androidweekly.ui.view.IconButton
+            android:id="@+id/translateButton"
+            style="@style/BigControl"
+            app:materialIcon="google_translate" />
+
+        <View style="@style/HorizontalLine" />
+
+        <com.github.mzule.androidweekly.ui.view.IconButton
             android:id="@+id/shareButton"
             style="@style/BigControl"
             app:materialIcon="share" />

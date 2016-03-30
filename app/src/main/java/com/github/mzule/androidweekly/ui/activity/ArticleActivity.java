@@ -1,6 +1,8 @@
 package com.github.mzule.androidweekly.ui.activity;
 
 import android.annotation.SuppressLint;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.view.GravityCompat;
@@ -9,11 +11,15 @@ import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 import com.github.mzule.androidweekly.R;
+import com.github.mzule.androidweekly.api.ApiCallback;
+import com.github.mzule.androidweekly.api.TranslateApi;
 import com.github.mzule.androidweekly.dao.FavoriteKeeper;
 import com.github.mzule.androidweekly.dao.TextZoomKeeper;
 import com.github.mzule.androidweekly.entity.Article;
+import com.github.mzule.androidweekly.entity.TranslateResult;
 import com.github.mzule.androidweekly.ui.view.ProgressView;
 
 import butterknife.Bind;
@@ -61,6 +67,26 @@ public class ArticleActivity extends BaseActivity {
     @OnClick(R.id.decreaseButton)
     void decrease() {
         settings.setTextZoom(settings.getTextZoom() - 5);
+    }
+
+    @OnClick(R.id.translateButton)
+    void translate() {
+        ClipboardManager manager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        ClipData clip = manager.getPrimaryClip();
+        if (clip.getItemCount() == 0) {
+            return;
+        }
+        new TranslateApi().translate(clip.getItemAt(0).getText().toString(), new ApiCallback<TranslateResult>() {
+            @Override
+            public void onSuccess(TranslateResult data, boolean fromCache) {
+                Toast.makeText(ArticleActivity.this, data.getDst(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+            }
+        });
+        drawerLayout.closeDrawers();
     }
 
     @OnClick(R.id.shareButton)

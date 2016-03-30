@@ -1,8 +1,13 @@
 package com.github.mzule.androidweekly.util;
 
+import android.support.annotation.WorkerThread;
+
 import com.google.gson.Gson;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.lang.reflect.Type;
+import java.net.URL;
 
 /**
  * Created by CaoDongping on 3/26/16.
@@ -29,6 +34,15 @@ public class JsonUtil {
     public static <T> T fromJson(String json, Type type) {
         try {
             return gson.fromJson(json, type);
+        } catch (Throwable e) {
+            return null;
+        }
+    }
+
+    @WorkerThread
+    public static <T> T fromJson(URL url, Class<T> cls) {
+        try {
+            return gson.fromJson(new BufferedReader(new InputStreamReader(url.openConnection().getInputStream())), cls);
         } catch (Throwable e) {
             return null;
         }
