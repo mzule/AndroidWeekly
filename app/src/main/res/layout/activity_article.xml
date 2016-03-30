@@ -38,9 +38,14 @@
         </ScrollView>
 
         <com.github.mzule.androidweekly.ui.view.TintStatusBar
+            android:id="@+id/tintBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/slideBg" />
+
+        <View
+            style="@style/HorizontalLine"
+            android:layout_below="@+id/tintBar" />
     </RelativeLayout>
 
     <LinearLayout
