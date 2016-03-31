@@ -64,8 +64,8 @@
 
         <com.github.mzule.androidweekly.ui.view.ProgressView
             android:id="@+id/progressView"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerInParent="true" />
     </RelativeLayout>
 
@@ -109,6 +109,18 @@
                 android:id="@+id/favoriteButton"
                 style="@style/NormalControl"
                 app:materialIcon="star" />
+
+            <com.github.mzule.androidweekly.ui.view.IconButton
+                style="@style/NormalControl"
+                app:materialIcon="code_braces" />
+
+            <com.github.mzule.androidweekly.ui.view.IconButton
+                style="@style/NormalControl"
+                app:materialIcon="file_document" />
+
+            <com.github.mzule.androidweekly.ui.view.IconButton
+                style="@style/NormalControl"
+                app:materialIcon="information" />
         </LinearLayout>
     </LinearLayout>
 </android.support.v4.widget.DrawerLayout>

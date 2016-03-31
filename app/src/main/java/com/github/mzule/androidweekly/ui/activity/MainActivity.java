@@ -92,12 +92,12 @@ public class MainActivity extends BaseActivity {
                 adapter.clear();
                 adapter.addAndNotify(data);
                 listView.setSelection(0);
-                progressView.finish();
+                progressView.stop();
             }
 
             @Override
             public void onFailure(Exception e) {
-                progressView.finish();
+                progressView.stop();
             }
         });
     }

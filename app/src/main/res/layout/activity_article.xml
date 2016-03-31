@@ -9,13 +9,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.pnikosis.materialishprogress.ProgressWheel
+        <com.github.mzule.androidweekly.ui.view.ProgressView
             android:id="@+id/progressView"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_centerInParent="true"
-            app:matProg_barColor="@color/colorPrimary"
-            app:matProg_progressIndeterminate="true" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"/>
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"

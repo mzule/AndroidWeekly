@@ -94,8 +94,9 @@ public class TranslateView extends PopupView<Boolean> {
         String paste = null;
         ClipboardManager manager = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clip = manager.getPrimaryClip();
-        if (clip.getItemCount() > 0) {
-            paste = clip.getItemAt(0).getText().toString();
+        if (clip != null && clip.getItemCount() > 0 && clip.getItemAt(0) != null) {
+            CharSequence text = clip.getItemAt(0).getText();
+            paste = text == null ? "" : text.toString();
         }
         return paste;
     }

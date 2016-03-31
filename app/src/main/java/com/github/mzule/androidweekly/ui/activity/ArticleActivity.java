@@ -14,6 +14,7 @@ import com.github.mzule.androidweekly.R;
 import com.github.mzule.androidweekly.dao.FavoriteKeeper;
 import com.github.mzule.androidweekly.dao.TextZoomKeeper;
 import com.github.mzule.androidweekly.entity.Article;
+import com.github.mzule.androidweekly.ui.view.ProgressView;
 import com.github.mzule.androidweekly.ui.view.TranslateView;
 
 import butterknife.Bind;
@@ -26,7 +27,7 @@ public class ArticleActivity extends BaseActivity {
     @Bind(R.id.webView)
     WebView webView;
     @Bind(R.id.progressView)
-    View progressView;
+    ProgressView progressView;
     @Bind(R.id.drawerLayout)
     DrawerLayout drawerLayout;
     @Bind(R.id.favoriteButton)
@@ -88,7 +89,7 @@ public class ArticleActivity extends BaseActivity {
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {
-                progressView.setVisibility(View.INVISIBLE);
+                progressView.stop();
             }
         });
         settings.setTextZoom(TextZoomKeeper.read(settings.getTextZoom()));
