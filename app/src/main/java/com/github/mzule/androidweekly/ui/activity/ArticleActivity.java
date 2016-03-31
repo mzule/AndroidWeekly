@@ -1,8 +1,6 @@
 package com.github.mzule.androidweekly.ui.activity;
 
 import android.annotation.SuppressLint;
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.view.GravityCompat;
@@ -11,16 +9,12 @@ import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Toast;
 
 import com.github.mzule.androidweekly.R;
-import com.github.mzule.androidweekly.api.ApiCallback;
-import com.github.mzule.androidweekly.api.TranslateApi;
 import com.github.mzule.androidweekly.dao.FavoriteKeeper;
 import com.github.mzule.androidweekly.dao.TextZoomKeeper;
 import com.github.mzule.androidweekly.entity.Article;
-import com.github.mzule.androidweekly.entity.TranslateResult;
-import com.github.mzule.androidweekly.ui.view.ProgressView;
+import com.github.mzule.androidweekly.ui.view.TranslateView;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -32,7 +26,7 @@ public class ArticleActivity extends BaseActivity {
     @Bind(R.id.webView)
     WebView webView;
     @Bind(R.id.progressView)
-    ProgressView progressView;
+    View progressView;
     @Bind(R.id.drawerLayout)
     DrawerLayout drawerLayout;
     @Bind(R.id.favoriteButton)
@@ -69,23 +63,9 @@ public class ArticleActivity extends BaseActivity {
         settings.setTextZoom(settings.getTextZoom() - 5);
     }
 
-    @OnClick(R.id.translateButton)
-    void translate() {
-        ClipboardManager manager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-        ClipData clip = manager.getPrimaryClip();
-        if (clip.getItemCount() == 0) {
-            return;
-        }
-        new TranslateApi().translate(clip.getItemAt(0).getText().toString(), new ApiCallback<TranslateResult>() {
-            @Override
-            public void onSuccess(TranslateResult data, boolean fromCache) {
-                Toast.makeText(ArticleActivity.this, data.getDst(), Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onFailure(Exception e) {
-            }
-        });
+    @OnClick({R.id.translateButton, R.id.pasteButton})
+    void translateAndPaste(View v) {
+        new TranslateView(this).attachTo(this, v.getId() == R.id.pasteButton);
         drawerLayout.closeDrawers();
     }
 
@@ -108,7 +88,7 @@ public class ArticleActivity extends BaseActivity {
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {
-                progressView.finish();
+                progressView.setVisibility(View.INVISIBLE);
             }
         });
         settings.setTextZoom(TextZoomKeeper.read(settings.getTextZoom()));
@@ -120,12 +100,6 @@ public class ArticleActivity extends BaseActivity {
     protected void onStop() {
         super.onStop();
         TextZoomKeeper.save(settings.getTextZoom());
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        progressView.finish();
     }
 
     @Override
