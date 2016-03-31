@@ -79,23 +79,9 @@
         <View style="@style/HorizontalLine" />
 
         <com.github.mzule.androidweekly.ui.view.IconButton
-            android:id="@+id/dictionaryButton"
-            style="@style/BigControl"
-            app:materialIcon="book_open_variant" />
-
-        <View style="@style/HorizontalLine" />
-
-        <com.github.mzule.androidweekly.ui.view.IconButton
             android:id="@+id/translateButton"
             style="@style/BigControl"
             app:materialIcon="google_translate" />
-
-        <View style="@style/HorizontalLine" />
-
-        <com.github.mzule.androidweekly.ui.view.IconButton
-            android:id="@+id/pasteButton"
-            style="@style/BigControl"
-            app:materialIcon="content_paste" />
 
         <View style="@style/HorizontalLine" />
 

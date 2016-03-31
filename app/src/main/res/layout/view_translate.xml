@@ -27,12 +27,13 @@
         <EditText
             android:id="@+id/queryInput"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="wrap_content"
             android:layout_below="@id/tintBar"
             android:background="@color/transparent"
             android:gravity="left|top"
             android:hint="Input query text here..."
             android:imeActionLabel="翻译"
+            android:maxHeight="100dp"
             android:padding="12dp"
             android:textColor="#666"
             android:textColorHint="#CCC"
@@ -42,14 +43,18 @@
             style="@style/HorizontalLine"
             android:layout_alignBottom="@+id/queryInput" />
 
-        <TextView
+        <EditText
             android:id="@+id/resultView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/queryInput"
-            android:minHeight="50dp"
+            android:layout_below="@id/queryInput"
+            android:background="@color/transparent"
+            android:editable="false"
+            android:focusable="false"
+            android:hint="Result will display here..."
             android:padding="12dp"
             android:textColor="#666"
+            android:textColorHint="#CCC"
             android:textSize="13sp" />
 
         <View
@@ -57,6 +62,7 @@
             android:layout_alignBottom="@+id/resultView" />
 
         <LinearLayout
+            android:id="@+id/buttonPanel"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_below="@+id/resultView">

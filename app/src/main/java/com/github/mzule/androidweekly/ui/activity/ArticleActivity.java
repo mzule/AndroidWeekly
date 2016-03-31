@@ -64,9 +64,9 @@ public class ArticleActivity extends BaseActivity {
         settings.setTextZoom(settings.getTextZoom() - 5);
     }
 
-    @OnClick({R.id.translateButton, R.id.pasteButton})
+    @OnClick(R.id.translateButton)
     void translateAndPaste(View v) {
-        new TranslateView(this).attachTo(this, v.getId() == R.id.pasteButton);
+        new TranslateView(this).attachTo(this, null);
         drawerLayout.closeDrawers();
     }
 

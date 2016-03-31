@@ -10,12 +10,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.github.mzule.androidweekly.R;
 import com.github.mzule.androidweekly.api.ApiCallback;
-import com.github.mzule.androidweekly.api.TranslateApi;
-import com.github.mzule.androidweekly.entity.TranslateResult;
+import com.github.mzule.androidweekly.api.DictionaryApi;
+import com.github.mzule.androidweekly.entity.Dict;
 import com.github.mzule.androidweekly.util.Keyboard;
 
 import butterknife.Bind;
@@ -25,11 +24,13 @@ import butterknife.OnClick;
 /**
  * Created by CaoDongping on 3/30/16.
  */
-public class TranslateView extends PopupView<Boolean> {
+public class TranslateView extends PopupView<Void> {
     @Bind(R.id.queryInput)
     EditText queryInput;
     @Bind(R.id.resultView)
-    TextView resultView;
+    EditText resultView;
+    @Bind(R.id.buttonPanel)
+    View buttonPanel;
 
     public TranslateView(Context context) {
         super(context);
@@ -40,6 +41,10 @@ public class TranslateView extends PopupView<Boolean> {
     @Override
     public void finish() {
         super.finish();
+        hideKeyboard();
+    }
+
+    private void hideKeyboard() {
         if (getContext() instanceof Activity) {
             Keyboard.hide((Activity) getContext());
         }
@@ -49,14 +54,36 @@ public class TranslateView extends PopupView<Boolean> {
     void clear() {
         queryInput.setText("");
         resultView.setText("");
+        queryInput.requestFocus();
+        Keyboard.show(getContext());
     }
 
     @OnClick(R.id.translateButton)
     void translate() {
-        new TranslateApi().translate(queryInput.getText().toString(), new ApiCallback<TranslateResult>() {
+        new DictionaryApi().look(queryInput.getText().toString(), new ApiCallback<Dict>() {
             @Override
-            public void onSuccess(TranslateResult data, boolean fromCache) {
-                resultView.setText(data.getDst());
+            public void onSuccess(Dict data, boolean fromCache) {
+                resultView.setText("");
+                for (int i = 0; i < data.getPs().size(); i++) {
+                    resultView.append(data.getPs().get(i) + "\n");
+                }
+                if (!TextUtils.isEmpty(data.getFy())) {
+                    resultView.append("\n" + data.getFy() + "\n");
+                }
+                for (int i = 0; i < data.getPos().size(); i++) {
+                    resultView.append("\n");
+                    resultView.append(data.getPos().get(i) + "\n");
+                    resultView.append(data.getAcceptation().get(i) + "\n");
+                }
+                for (int i = 0; i < data.getSent().size(); i++) {
+                    resultView.append("\n");
+                    resultView.append(data.getSent().get(i).getOrig() + "\n");
+                    resultView.append(data.getSent().get(i).getTrans() + "\n");
+                }
+                resultView.setText(resultView.getText().toString().trim());
+                resultView.setSelection(0);
+                hideKeyboard();
+                updateResultViewMaxHeight();
             }
 
             @Override
@@ -72,21 +99,19 @@ public class TranslateView extends PopupView<Boolean> {
     }
 
     @Override
-    protected void render(Boolean data) {
-        final boolean pasteAndTranslate = Boolean.TRUE.equals(data);
-        postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                String paste = getPasteText();
-                queryInput.requestFocus();
-                Keyboard.show(getContext());
-                if (pasteAndTranslate && !TextUtils.isEmpty(paste)) {
-                    queryInput.setText(paste);
-                    queryInput.setSelection(paste.length());
-                    translate();
-                }
-            }
-        }, ANIMATE_DURATION);
+    protected void render(Void data) {
+        String paste = getPasteText();
+        queryInput.requestFocus();
+        if (!TextUtils.isEmpty(paste)) {
+            queryInput.setText(paste);
+            queryInput.setSelection(paste.length());
+            translate();
+        }
+    }
+
+    private void updateResultViewMaxHeight() {
+        int height = getResources().getDisplayMetrics().heightPixels;
+        resultView.setMaxHeight(height - queryInput.getBottom() - buttonPanel.getMeasuredHeight() - queryInput.getPaddingLeft());
     }
 
     @Nullable
