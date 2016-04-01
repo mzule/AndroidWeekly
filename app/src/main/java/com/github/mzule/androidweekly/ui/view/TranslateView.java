@@ -63,24 +63,7 @@ public class TranslateView extends PopupView<Void> {
         new DictionaryApi().look(queryInput.getText().toString().toLowerCase(), new ApiCallback<Dict>() {
             @Override
             public void onSuccess(Dict data, boolean fromCache) {
-                resultView.setText("");
-                for (int i = 0; i < data.getPs().size(); i++) {
-                    resultView.append(data.getPs().get(i) + "\n");
-                }
-                if (!TextUtils.isEmpty(data.getFy())) {
-                    resultView.append("\n" + data.getFy() + "\n");
-                }
-                for (int i = 0; i < data.getPos().size(); i++) {
-                    resultView.append("\n");
-                    resultView.append(data.getPos().get(i) + "\n");
-                    resultView.append(data.getAcceptation().get(i) + "\n");
-                }
-                for (int i = 0; i < data.getSent().size(); i++) {
-                    resultView.append("\n");
-                    resultView.append(data.getSent().get(i).getOrig() + "\n");
-                    resultView.append(data.getSent().get(i).getTrans() + "\n");
-                }
-                resultView.setText(resultView.getText().toString().trim());
+                resultView.setText(data.getContent());
                 resultView.setSelection(0);
                 hideKeyboard();
                 updateResultViewMaxHeight();

@@ -1,5 +1,7 @@
 package com.github.mzule.androidweekly.entity;
 
+import android.text.TextUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +23,28 @@ public class Dict {
         pron = new ArrayList<>();
         acceptation = new ArrayList<>();
         sent = new ArrayList<>();
+    }
+
+    public String getContent() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < getPs().size(); i++) {
+            sb.append(getPs().get(i)).append("\n");
+        }
+        if (!TextUtils.isEmpty(getFy())) {
+            sb.append("\n");
+            sb.append(getFy()).append("\n");
+        }
+        for (int i = 0; i < getPos().size(); i++) {
+            sb.append("\n");
+            sb.append(getPos().get(i)).append("\n");
+            sb.append(getAcceptation().get(i)).append("\n");
+        }
+        for (int i = 0; i < getSent().size(); i++) {
+            sb.append("\n");
+            sb.append(getSent().get(i).getOrig()).append("\n");
+            sb.append(getSent().get(i).getTrans()).append("\n");
+        }
+        return sb.toString().trim();
     }
 
     public void addPos(String pos) {
