@@ -60,7 +60,7 @@ public class TranslateView extends PopupView<Void> {
 
     @OnClick(R.id.translateButton)
     void translate() {
-        new DictionaryApi().look(queryInput.getText().toString(), new ApiCallback<Dict>() {
+        new DictionaryApi().look(queryInput.getText().toString().toLowerCase(), new ApiCallback<Dict>() {
             @Override
             public void onSuccess(Dict data, boolean fromCache) {
                 resultView.setText("");
