@@ -12,13 +12,23 @@ public class Article implements Serializable {
     private String link;
     private String imageUrl;
     private String domain;
+    private String issue;
+    private String section;
 
-    public Article(String title, String brief, String link, String imageUrl, String domain) {
-        this.title = title;
-        this.brief = brief;
-        this.link = link;
-        this.imageUrl = imageUrl;
-        this.domain = domain;
+    public String getSection() {
+        return section;
+    }
+
+    public void setSection(String section) {
+        this.section = section;
+    }
+
+    public String getIssue() {
+        return issue;
+    }
+
+    public void setIssue(String issue) {
+        this.issue = issue;
     }
 
     public String getTitle() {

@@ -2,7 +2,9 @@ package com.github.mzule.androidweekly.api;
 
 
 import android.os.Handler;
+import android.text.TextUtils;
 
+import com.github.mzule.androidweekly.dao.ArticleDao;
 import com.github.mzule.androidweekly.dao.IssueListKeeper;
 import com.github.mzule.androidweekly.entity.Article;
 import com.github.mzule.androidweekly.entity.Issue;
@@ -22,17 +24,46 @@ import java.util.List;
 public class ArticleApi {
     //TODO new thread to threadhandler
     private Handler handler = new Handler();
+    private ArticleDao articleDao;
+
+    public ArticleApi() {
+        articleDao = new ArticleDao();
+    }
 
     public void getPage(final String issue, final ApiCallback<List<Object>> callback) {
         new Thread() {
             @Override
             public void run() {
                 try {
-                    postSuccess(doGetPage(issue), callback);
+                    if (!readCache()) {
+                        postSuccess(doGetPage(issue), callback);
+                    }
                 } catch (final Exception e) {
                     postError(e, callback);
                 }
 
+            }
+
+            private boolean readCache() {
+                if (!TextUtils.isEmpty(issue)) {
+                    List<Article> articles = articleDao.read(issue);
+                    if (!articles.isEmpty()) {
+                        postSuccess(new Response<>(make(articles), true), callback);
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            private List<Object> make(List<Article> articles) {
+                List<Object> ret = new ArrayList<>();
+                for (Article article : articles) {
+                    if (!ret.contains(article.getSection())) {
+                        ret.add(article.getSection());
+                    }
+                    ret.add(article);
+                }
+                return ret;
             }
         }.start();
     }
@@ -77,11 +108,12 @@ public class ArticleApi {
         Elements tables = doc.getElementsByTag("table");
 
         final List<Object> articles = new ArrayList<>();
-
+        String currentSection = null;
         for (Element e : tables) {
             Elements h2 = e.getElementsByTag("h2");
             if (!h2.isEmpty()) {
-                articles.add(h2.get(0).text());
+                currentSection = h2.get(0).text();
+                articles.add(currentSection);
             } else {
                 Elements tds = e.getElementsByTag("td");
                 Element td = tds.get(tds.size() - 2);
@@ -93,7 +125,20 @@ public class ArticleApi {
                 String brief = td.getElementsByTag("p").get(0).text();
                 String link = td.getElementsByClass("article-headline").get(0).attr("href");
                 String domain = td.getElementsByTag("span").get(0).text().replace("(", "").replace(")", "");
-                articles.add(new Article(title, brief, link, imageUrl, domain));
+                if (issue == null) {
+                    String number = doc.getElementsByClass("issue-header").get(0).getElementsByTag("span").get(0).text();
+                    issue = "/issues/issue-" + number.replace("#", "");
+                }
+                Article article = new Article();
+                article.setTitle(title);
+                article.setBrief(brief);
+                article.setLink(link);
+                article.setDomain(domain);
+                article.setIssue(issue);
+                article.setImageUrl(imageUrl);
+                article.setSection(currentSection);
+                articles.add(article);
+                articleDao.save(article);
             }
         }
         return new Response<>(articles, false);
