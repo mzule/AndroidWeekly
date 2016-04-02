@@ -63,7 +63,7 @@ public class ArticleDao extends SQLiteOpenHelper {
     }
 
     private boolean checkExist(Article article) {
-        Cursor cursor = getReadableDatabase().rawQuery("SELECT COUNT(*) FROM ARTICLE WHERE LINK=? AND ISSUE=?", new String[]{article.getLink(), article.getIssue()});
+        Cursor cursor = getReadableDatabase().rawQuery("SELECT COUNT(*) FROM ARTICLE WHERE LINK=?", new String[]{article.getLink()});
         cursor.moveToNext();
         int count = cursor.getInt(0);
         cursor.close();

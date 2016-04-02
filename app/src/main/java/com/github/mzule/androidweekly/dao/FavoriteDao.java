@@ -53,7 +53,7 @@ public class FavoriteDao extends SQLiteOpenHelper {
     }
 
     public boolean contains(Article article) {
-        Cursor cursor = getReadableDatabase().rawQuery("SELECT COUNT(*) FROM FAVORITE WHERE LINK=? AND ISSUE=?", new String[]{article.getLink(), article.getIssue()});
+        Cursor cursor = getReadableDatabase().rawQuery("SELECT COUNT(*) FROM FAVORITE WHERE LINK=?", new String[]{article.getLink()});
         cursor.moveToNext();
         int count = cursor.getInt(0);
         cursor.close();
@@ -77,7 +77,7 @@ public class FavoriteDao extends SQLiteOpenHelper {
     }
 
     public void delete(Article article) {
-        getWritableDatabase().delete("FAVORITE", "LINK=? AND ISSUE=?", new String[]{article.getLink(), article.getIssue()});
+        getWritableDatabase().delete("FAVORITE", "LINK=?", new String[]{article.getLink()});
     }
 
     @Override
