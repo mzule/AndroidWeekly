@@ -11,7 +11,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.github.mzule.androidweekly.R;
-import com.github.mzule.androidweekly.dao.FavoriteKeeper;
+import com.github.mzule.androidweekly.dao.FavoriteDao;
 import com.github.mzule.androidweekly.dao.TextZoomKeeper;
 import com.github.mzule.androidweekly.entity.Article;
 import com.github.mzule.androidweekly.ui.view.ProgressView;
@@ -35,6 +35,7 @@ public class ArticleActivity extends BaseActivity {
     private Article article;
     private WebSettings settings;
     private boolean changed;
+    private FavoriteDao favoriteDao;
 
     public static Intent makeIntent(Context context, Article article) {
         Intent intent = new Intent(context, ArticleActivity.class);
@@ -47,9 +48,9 @@ public class ArticleActivity extends BaseActivity {
         changed = true;
         v.setSelected(!v.isSelected());
         if (v.isSelected()) {
-            FavoriteKeeper.save(article);
+            favoriteDao.save(article);
         } else {
-            FavoriteKeeper.delete(article);
+            favoriteDao.delete(article);
         }
         drawerLayout.closeDrawers();
     }
@@ -83,6 +84,7 @@ public class ArticleActivity extends BaseActivity {
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void afterInject() {
+        favoriteDao = new FavoriteDao();
         article = (Article) getIntent().getSerializableExtra("article");
         settings = webView.getSettings();
         webView.loadUrl(article.getLink());
@@ -94,7 +96,7 @@ public class ArticleActivity extends BaseActivity {
         });
         settings.setTextZoom(TextZoomKeeper.read(settings.getTextZoom()));
         settings.setJavaScriptEnabled(true);
-        favoriteButton.setSelected(FavoriteKeeper.contains(article));
+        favoriteButton.setSelected(favoriteDao.contains(article));
     }
 
     @Override

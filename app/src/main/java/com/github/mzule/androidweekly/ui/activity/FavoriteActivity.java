@@ -7,7 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.github.mzule.androidweekly.R;
-import com.github.mzule.androidweekly.dao.FavoriteKeeper;
+import com.github.mzule.androidweekly.dao.FavoriteDao;
 import com.github.mzule.androidweekly.entity.Article;
 import com.github.mzule.androidweekly.entity.Favorite;
 import com.github.mzule.androidweekly.ui.adapter.ArticleAdapter;
@@ -26,6 +26,7 @@ public class FavoriteActivity extends BaseActivity {
     private static final int REQUEST_CODE_OPEN_ARTICLE = 0x1;
     @Bind(R.id.listView)
     ListView listView;
+    private FavoriteDao favoriteDao;
     private ArticleAdapter adapter;
 
     public static Intent makeIntent(Context context) {
@@ -40,13 +41,14 @@ public class FavoriteActivity extends BaseActivity {
 
     @Override
     protected void afterInject() {
+        favoriteDao = new FavoriteDao();
         adapter = new ArticleAdapter(this);
         listView.setAdapter(adapter);
         renderFavorites();
     }
 
     private void renderFavorites() {
-        List<Favorite> favorites = FavoriteKeeper.read();
+        List<Favorite> favorites = favoriteDao.read();
         adapter.clear();
         adapter.addAndNotify(extract(favorites));
     }
