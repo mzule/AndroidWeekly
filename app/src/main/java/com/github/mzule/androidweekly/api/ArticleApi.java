@@ -3,6 +3,7 @@ package com.github.mzule.androidweekly.api;
 
 import android.os.Handler;
 
+import com.github.mzule.androidweekly.dao.IssueListKeeper;
 import com.github.mzule.androidweekly.entity.Article;
 import com.github.mzule.androidweekly.entity.Issue;
 
@@ -41,8 +42,11 @@ public class ArticleApi {
             @Override
             public void run() {
                 try {
+                    List<Issue> issues = IssueListKeeper.read();
+                    if (issues != null && !issues.isEmpty()) {
+                        postSuccess(new Response<>(issues, true), callback);
+                    }
                     postSuccess(doGetArchive(), callback);
-                    doGetArchive();
                 } catch (Exception e) {
                     postError(e, callback);
                 }
@@ -60,6 +64,7 @@ public class ArticleApi {
             String url = li.getElementsByTag("a").attr("href");
             issues.add(new Issue(name, url, date));
         }
+        IssueListKeeper.save(issues);
         return new Response<>(issues, false);
     }
 
