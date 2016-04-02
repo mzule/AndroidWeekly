@@ -96,6 +96,8 @@ public class ArticleActivity extends BaseActivity {
         });
         settings.setTextZoom(TextZoomKeeper.read(settings.getTextZoom()));
         settings.setJavaScriptEnabled(true);
+        settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        settings.setDomStorageEnabled(true);
         favoriteButton.setSelected(favoriteDao.contains(article));
     }
 
