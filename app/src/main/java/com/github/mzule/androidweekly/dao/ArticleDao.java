@@ -17,6 +17,13 @@ import java.util.List;
 public class ArticleDao extends SQLiteOpenHelper {
     private static final String NAME = "article";
     private static final int VERSION = 1;
+    private static final int INDEX_TITLE = 1;
+    private static final int INDEX_BRIEF = 2;
+    private static final int INDEX_LINK = 3;
+    private static final int INDEX_IMAGE_URL = 4;
+    private static final int INDEX_DOMAIN = 5;
+    private static final int INDEX_ISSUE = 6;
+    private static final int INDEX_SECTION = 7;
 
     public ArticleDao() {
         super(App.getInstance(), NAME, null, VERSION);
@@ -27,13 +34,13 @@ public class ArticleDao extends SQLiteOpenHelper {
         Cursor cursor = getReadableDatabase().rawQuery("SELECT * FROM ARTICLE WHERE ISSUE=?", new String[]{issue});
         while (cursor.moveToNext()) {
             Article article = new Article();
-            article.setTitle(cursor.getString(1));
-            article.setBrief(cursor.getString(2));
-            article.setLink(cursor.getString(3));
-            article.setImageUrl(cursor.getString(4));
-            article.setDomain(cursor.getString(5));
-            article.setIssue(cursor.getString(6));
-            article.setSection(cursor.getString(7));
+            article.setTitle(cursor.getString(INDEX_TITLE));
+            article.setBrief(cursor.getString(INDEX_BRIEF));
+            article.setLink(cursor.getString(INDEX_LINK));
+            article.setImageUrl(cursor.getString(INDEX_IMAGE_URL));
+            article.setDomain(cursor.getString(INDEX_DOMAIN));
+            article.setIssue(cursor.getString(INDEX_ISSUE));
+            article.setSection(cursor.getString(INDEX_SECTION));
             articles.add(article);
         }
         cursor.close();
