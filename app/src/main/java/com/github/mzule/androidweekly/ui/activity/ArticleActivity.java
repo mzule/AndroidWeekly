@@ -125,6 +125,8 @@ public class ArticleActivity extends BaseActivity {
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawers();
+        } else if (webView.canGoBack()) {
+            webView.goBack();
         } else {
             super.onBackPressed();
         }
