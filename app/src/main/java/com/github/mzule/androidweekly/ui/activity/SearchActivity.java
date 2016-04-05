@@ -27,6 +27,8 @@ public class SearchActivity extends BaseActivity {
         queryInput.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                startActivity(SearchResultActivity.makeIntent(SearchActivity.this, queryInput.getText().toString()));
+                queryInput.setText("");
                 return true;
             }
         });

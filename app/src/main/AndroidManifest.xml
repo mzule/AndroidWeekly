@@ -25,6 +25,7 @@
         <activity
             android:name=".ui.activity.SearchActivity"
             android:windowSoftInputMode="stateAlwaysVisible" />
+        <activity android:name=".ui.activity.SearchResultActivity" />
     </application>
 
 </manifest>
