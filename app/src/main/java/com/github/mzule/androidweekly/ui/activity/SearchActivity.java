@@ -34,6 +34,7 @@ public class SearchActivity extends BaseActivity {
     @OnItemClick(R.id.listView)
     void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         String q = (String) parent.getAdapter().getItem(position);
+        SearchHistoryKeeper.save(q);
         startActivity(SearchResultActivity.makeIntent(this, q));
     }
 

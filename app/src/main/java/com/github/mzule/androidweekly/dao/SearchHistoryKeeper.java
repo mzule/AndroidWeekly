@@ -20,6 +20,9 @@ public class SearchHistoryKeeper {
 
     public static void save(String q) {
         List<String> exist = read();
+        if (exist.contains(q)) {
+            exist.remove(q);
+        }
         exist.add(0, q);
         if (exist.size() > MAX_SIZE) {
             exist = exist.subList(0, MAX_SIZE);
