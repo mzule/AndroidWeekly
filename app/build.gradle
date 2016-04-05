@@ -30,4 +30,5 @@ dependencies {
     compile 'com.google.code.gson:gson:2.5'
     compile 'net.steamcrafted:materialiconlib:1.0.9'
     compile 'com.pnikosis:materialish-progress:1.7'
+    compile project(':snowball')
 }

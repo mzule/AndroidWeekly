@@ -25,6 +25,9 @@ public class ProgressView extends ProgressWheel {
     }
 
     private void init() {
+        if (isInEditMode()) {
+            return;
+        }
         setBarColor(getResources().getColor(R.color.colorPrimary));
         setBarWidth(DensityUtil.dp2px(2));
         spin();
@@ -40,7 +43,7 @@ public class ProgressView extends ProgressWheel {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        if (getLayoutParams().width == ViewGroup.LayoutParams.WRAP_CONTENT && getLayoutParams().height == ViewGroup.LayoutParams.WRAP_CONTENT) {
+        if (!isInEditMode() && getLayoutParams().width == ViewGroup.LayoutParams.WRAP_CONTENT && getLayoutParams().height == ViewGroup.LayoutParams.WRAP_CONTENT) {
             super.onMeasure(DensityUtil.dp2px(40), DensityUtil.dp2px(40));
         } else {
             super.onMeasure(widthMeasureSpec, heightMeasureSpec);

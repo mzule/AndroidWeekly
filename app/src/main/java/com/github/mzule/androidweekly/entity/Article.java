@@ -71,6 +71,10 @@ public class Article implements Serializable {
         this.domain = domain;
     }
 
+    public String getFTS() {
+        return title + "\n" + brief;
+    }
+
     @Override
     public String toString() {
         return Arrays.toString(new String[]{title, "\n", brief, "\n", link, "\n", imageUrl, "\n", domain, "\n", "\n"});

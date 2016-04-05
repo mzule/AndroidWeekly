@@ -111,6 +111,11 @@
                 app:materialIcon="star" />
 
             <com.github.mzule.androidweekly.ui.view.IconButton
+                android:id="@+id/searchButton"
+                style="@style/NormalControl"
+                app:materialIcon="magnify" />
+
+            <com.github.mzule.androidweekly.ui.view.IconButton
                 style="@style/NormalControl"
                 app:materialIcon="code_braces" />
 
