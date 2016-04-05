@@ -1,20 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <com.github.mzule.androidweekly.ui.view.NaviBar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:nb_left_text="ANDROID"
-        app:nb_right_text="FAVORITE" />
-
-    <com.github.mzule.androidweekly.ui.view.PinnedSectionListView
-        android:id="@+id/listView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="@null"
-        android:overScrollMode="never" />
-</LinearLayout>
+        android:orientation="vertical">
+
+        <com.github.mzule.androidweekly.ui.view.NaviBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:nb_left_text="ANDROID"
+            app:nb_right_text="FAVORITE" />
+
+        <com.github.mzule.androidweekly.ui.view.PinnedSectionListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null"
+            android:overScrollMode="never" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/slideBg"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <View style="@style/HorizontalLine" />
+
+        <com.github.mzule.androidweekly.ui.view.IconButton
+            android:id="@+id/importButton"
+            style="@style/BigControl"
+            app:materialIcon="import_icon" />
+
+        <View style="@style/HorizontalLine" />
+
+        <com.github.mzule.androidweekly.ui.view.IconButton
+            android:id="@+id/exportButton"
+            style="@style/BigControl"
+            app:materialIcon="export" />
+
+        <View style="@style/HorizontalLine" />
+    </LinearLayout>
+</android.support.v4.widget.DrawerLayout>

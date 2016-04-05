@@ -4,11 +4,18 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Environment;
 
 import com.github.mzule.androidweekly.App;
 import com.github.mzule.androidweekly.entity.Article;
 import com.github.mzule.androidweekly.entity.Favorite;
+import com.github.mzule.androidweekly.util.IOUtil;
+import com.github.mzule.androidweekly.util.JsonUtil;
+import com.google.gson.reflect.TypeToken;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,8 +83,54 @@ public class FavoriteDao extends SQLiteOpenHelper {
         }
     }
 
+    public void save(Favorite favorite) {
+        Article article = favorite.getArticle();
+        if (!contains(article)) {
+            ContentValues cv = new ContentValues();
+            cv.put("TITLE", article.getTitle());
+            cv.put("BRIEF", article.getBrief());
+            cv.put("LINK", article.getLink());
+            cv.put("IMAGE_URL", article.getImageUrl());
+            cv.put("DOMAIN", article.getDomain());
+            cv.put("ISSUE", article.getIssue());
+            cv.put("SECTION", article.getSection());
+            cv.put("TYPE", 0);// TODO add type for article
+            cv.put("TIME", favorite.getTime());
+            getWritableDatabase().insert("FAVORITE", null, cv);
+        }
+    }
+
     public void delete(Article article) {
         getWritableDatabase().delete("FAVORITE", "LINK=?", new String[]{article.getLink()});
+    }
+
+    public void exportToFile() throws IOException {
+        List<Favorite> all = read();
+        String json = JsonUtil.toJson(all);
+        File file = new File(Environment.getExternalStorageDirectory(), "androidweeklyfavorite.json");
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+        FileWriter fileWriter = null;
+        try {
+            fileWriter = new FileWriter(file);
+            fileWriter.write(json);
+            fileWriter.flush();
+        } finally {
+            IOUtil.close(fileWriter);
+        }
+    }
+
+    public void importFromFile() throws IOException {
+        File file = new File(Environment.getExternalStorageDirectory(), "androidweeklyfavorite.json");
+        String json = IOUtil.read(file);
+        List<Favorite> favorites = JsonUtil.fromJson(json, new TypeToken<List<Favorite>>() {
+        }.getType());
+        if (favorites != null) {
+            for (Favorite favorite : favorites) {
+                save(favorite);
+            }
+        }
     }
 
     @Override
