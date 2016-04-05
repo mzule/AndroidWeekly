@@ -65,6 +65,12 @@ public class MainActivity extends BaseActivity {
         drawerLayout.closeDrawers();
     }
 
+    @OnClick(R.id.searchButton)
+    void onSearchClicK() {
+        startActivity(SearchActivity.makeIntent(this));
+        drawerLayout.closeDrawers();
+    }
+
     @Override
     protected void afterInject() {
         articleApi = new ArticleApi();
