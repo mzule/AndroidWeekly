@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="NaviBar">
+        <attr name="nb_left_text" format="string" />
+        <attr name="nb_right_text" format="string" />
+    </declare-styleable>
+</resources>

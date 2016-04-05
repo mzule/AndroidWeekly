@@ -5,47 +5,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.github.mzule.androidweekly.ui.view.TintStatusBar
+    <com.github.mzule.androidweekly.ui.view.NaviBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:id="@+id/brandView"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="#fff"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ANDROID"
-                android:textColor="#36bce8"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:text="FAVORITE"
-                android:textColor="#464646"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <com.github.mzule.androidweekly.ui.view.IconButton
-            style="@style/SmallControl"
-            android:onClick="back"
-            app:materialIcon="arrow_left" />
-    </RelativeLayout>
-
-    <View style="@style/HorizontalLine" />
+        app:nb_left_text="ANDROID"
+        app:nb_right_text="FAVORITE" />
 
     <com.github.mzule.androidweekly.ui.view.PinnedSectionListView
         android:id="@+id/listView"
