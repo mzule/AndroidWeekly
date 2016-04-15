@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.github.mzule.androidweekly.ui.view.NaviBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:nb_left_text="ABOUT"
+        app:nb_right_text="ME" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:lineSpacingMultiplier="1.6"
+        android:padding="12dp"
+        android:text="host at github"
+        android:textColor="#666"
+        android:textColorLink="@color/colorPrimary"
+        android:textSize="14sp" />
+</LinearLayout>

@@ -71,6 +71,12 @@ public class MainActivity extends BaseActivity {
         drawerLayout.closeDrawers();
     }
 
+    @OnClick(R.id.aboutButton)
+    void onAboutClick() {
+        startActivity(AboutActivity.makeIntent(this));
+        drawerLayout.closeDrawers();
+    }
+
     @Override
     protected void afterInject() {
         articleApi = new ArticleApi();

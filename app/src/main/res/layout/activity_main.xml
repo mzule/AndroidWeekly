@@ -116,14 +116,7 @@
                 app:materialIcon="magnify" />
 
             <com.github.mzule.androidweekly.ui.view.IconButton
-                style="@style/NormalControl"
-                app:materialIcon="code_braces" />
-
-            <com.github.mzule.androidweekly.ui.view.IconButton
-                style="@style/NormalControl"
-                app:materialIcon="file_document" />
-
-            <com.github.mzule.androidweekly.ui.view.IconButton
+                android:id="@+id/aboutButton"
                 style="@style/NormalControl"
                 app:materialIcon="information" />
         </LinearLayout>
