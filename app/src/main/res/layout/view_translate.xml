@@ -13,8 +13,8 @@
         android:id="@+id/mainView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
+        android:layout_marginLeft="@dimen/space"
+        android:layout_marginRight="@dimen/space"
         android:background="@color/white"
         android:clickable="true"
         android:orientation="vertical">
@@ -34,7 +34,7 @@
             android:hint="Input query text here..."
             android:imeActionLabel="翻译"
             android:maxHeight="100dp"
-            android:padding="12dp"
+            android:padding="@dimen/space"
             android:textColor="#666"
             android:textColorHint="#CCC"
             android:textSize="@dimen/text_size_small" />
@@ -52,7 +52,7 @@
             android:editable="false"
             android:focusable="false"
             android:hint="Result will display here..."
-            android:padding="12dp"
+            android:padding="@dimen/space"
             android:textColor="#666"
             android:textColorHint="#CCC"
             android:textSize="@dimen/text_size_small" />
@@ -64,7 +64,7 @@
         <LinearLayout
             android:id="@+id/buttonPanel"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/action_bar_height"
             android:layout_below="@+id/resultView">
 
             <TextView

@@ -3,4 +3,8 @@
     <dimen name="text_size_small">12sp</dimen>
     <dimen name="text_size_medium">14sp</dimen>
     <dimen name="text_size_large">16sp</dimen>
+    <dimen name="space">12dp</dimen>
+    <dimen name="half_space">6dp</dimen>
+    <dimen name="small_space">4dp</dimen>
+    <dimen name="action_bar_height">40dp</dimen>
 </resources>

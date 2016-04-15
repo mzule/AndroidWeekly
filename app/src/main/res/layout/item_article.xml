@@ -7,7 +7,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="12dp">
+        android:padding="@dimen/space">
 
         <TextView
             android:id="@+id/nameView"
@@ -22,16 +22,16 @@
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:layout_below="@id/nameView"
-            android:layout_marginRight="12dp"
-            android:layout_marginTop="12dp" />
+            android:layout_marginRight="@dimen/space"
+            android:layout_marginTop="@dimen/space" />
 
         <TextView
             android:id="@+id/briefView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/nameView"
-            android:layout_marginBottom="12dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginBottom="@dimen/space"
+            android:layout_marginTop="@dimen/space"
             android:layout_toRightOf="@id/iconView"
             android:text="新的里程"
             android:textColor="#666"

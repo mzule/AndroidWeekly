@@ -22,7 +22,7 @@
         <EditText
             android:id="@+id/queryInput"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/action_bar_height"
             android:background="@color/transparent"
             android:hint="Search local cache here."
             android:imeOptions="actionSearch"

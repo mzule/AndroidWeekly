@@ -9,9 +9,9 @@
         android:id="@+id/sectionName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingBottom="6dp"
-        android:paddingLeft="12dp"
-        android:paddingTop="6dp"
+        android:paddingBottom="@dimen/half_space"
+        android:paddingLeft="@dimen/space"
+        android:paddingTop="@dimen/half_space"
         android:text="Sponsored"
         android:textSize="@dimen/text_size_tiny" />
 

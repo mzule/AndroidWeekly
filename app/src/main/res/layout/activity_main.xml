@@ -18,7 +18,7 @@
         <LinearLayout
             android:id="@+id/brandView"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/action_bar_height"
             android:layout_below="@id/tintBar"
             android:background="#fff"
             android:gravity="center">
@@ -34,7 +34,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
+                android:layout_marginLeft="@dimen/small_space"
                 android:text="WEEKLY"
                 android:textColor="#464646"
                 android:textSize="@dimen/text_size_large"

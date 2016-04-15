@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:background="@color/transparent"
         android:lineSpacingMultiplier="1.6"
-        android:padding="12dp"
+        android:padding="@dimen/space"
         android:text="host at github"
         android:textColor="#666"
         android:textColorLink="@color/colorPrimary"
