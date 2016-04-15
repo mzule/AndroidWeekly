@@ -17,7 +17,7 @@
 
 ## 下载
 
-[https://github.com/mzule/AndroidWeekly/releases/download/1.0/app.apk](https://github.com/mzule/AndroidWeekly/releases/download/1.0/app.apk)
+[https://github.com/mzule/AndroidWeekly/releases/download/v1.0.0/weekly.apk](https://github.com/mzule/AndroidWeekly/releases/download/v1.0.0/weekly.apk)
 
 ## 运行效果
 
@@ -53,6 +53,6 @@ Apache License  2.0
 
 1. 提 issue
 1. 新浪微博 [http://weibo.com/mzule](http://weibo.com/mzule)
-1. 个人博客 [https://mzule.github.io](https://mzule.github.io)
+1. 个人博客 [https://caodongping.me](http://caodongping.me)
 1. 邮件 "mzule".concat("4j").concat("@").concat("gmail.com")
 
