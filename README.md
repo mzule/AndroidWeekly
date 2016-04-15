@@ -23,6 +23,7 @@
 
 ![](https://raw.githubusercontent.com/mzule/AndroidWeekly/master/art/translation.gif)
 ![](https://raw.githubusercontent.com/mzule/AndroidWeekly/master/art/home.jpg)
+![](https://raw.githubusercontent.com/mzule/AndroidWeekly/master/art/favorite.jpg)
 ![](https://raw.githubusercontent.com/mzule/AndroidWeekly/master/art/issue.jpg)
 ![](https://raw.githubusercontent.com/mzule/AndroidWeekly/master/art/article.jpg)
 ![](https://raw.githubusercontent.com/mzule/AndroidWeekly/master/art/search.jpg)
