@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#36bce8</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#464646</color>
     <color name="placeholder">#e1e1e1</color>
     <color name="lineColor">#d9d9d9</color>
     <color name="transparent">#00000000</color>
@@ -12,4 +12,5 @@
     <color name="textColorGray">#666666</color>
     <color name="textColorLightGray">#999999</color>
     <color name="textColorHint">#CCCCCC</color>
+    <color name="mask">#22000000</color>
 </resources>

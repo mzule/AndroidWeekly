@@ -7,7 +7,7 @@
         android:id="@+id/maskView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#22000000" />
+        android:background="@color/mask" />
 
     <RelativeLayout
         android:id="@+id/mainView"

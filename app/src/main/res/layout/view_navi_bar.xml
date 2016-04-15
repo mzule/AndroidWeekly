@@ -26,7 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ANDROID"
-                android:textColor="#36bce8"
+                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/text_size_large"
                 android:textStyle="bold" />
 
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/small_space"
                 android:text="FAVORITE"
-                android:textColor="#464646"
+                android:textColor="@color/colorAccent"
                 android:textSize="@dimen/text_size_large"
                 android:textStyle="bold" />
         </LinearLayout>
