@@ -4,6 +4,7 @@ package com.github.mzule.androidweekly.api;
 import android.os.Handler;
 import android.text.TextUtils;
 
+import com.github.mzule.androidweekly.api.parser.ArticleParsers;
 import com.github.mzule.androidweekly.dao.ArticleDao;
 import com.github.mzule.androidweekly.dao.IssueListKeeper;
 import com.github.mzule.androidweekly.entity.Article;
@@ -100,106 +101,13 @@ public class ArticleApi {
     }
 
     private Response<List<Object>> doGetPage(String issue) throws Exception {
-        String url = "http://androidweekly.net";
-        if (issue != null) {
-            url += issue;
-        }
-        final List<Object> articles = new ArrayList<>();
-        Document doc = Jsoup.parse(new URL(url), 30000);
-        if (issue == null || isBiggerThan100(issue)) {
-            parse(doc, articles, issue);
-        } else {
-            Element root = doc.getElementsByClass("issue").get(0);
-            while (root.children().size() == 1) {
-                root = root.child(0);
-            }
-            String currentSection = null;
-            for (Element e : root.children()) {
-                if (e.tagName().equals("h2")) {
-                    currentSection = e.text();
-                    articles.add(currentSection);
-                    continue;
-                }
-                if (e.tagName().equals("div")) {
-                    Elements img = e.getElementsByTag("img");
-                    if (!img.isEmpty()) {
-                        Article article = new Article();
-                        article.setImageUrl(img.get(0).attr("src"));
-                        article.setTitle(e.getElementsByTag("a").get(1).text());
-                        article.setLink(e.getElementsByTag("a").get(1).attr("href"));
-                        article.setBrief(e.getElementsByTag("p").get(0).text());
-                        Elements span = e.getElementsByTag("span");
-                        if (!span.isEmpty()) {
-                            article.setDomain(span.get(0).text().replace("(", "").replace(")", ""));
-                        }
-                        article.setIssue(issue);
-                        article.setSection(currentSection);
-                        articles.add(article);
-                        //articleDao.save(article);
-                    }
-                } else {
-                    Article article = new Article();
-                    Elements title = e.getElementsByTag("a");
-                    if (title.isEmpty()) {
-                        continue;
-                    }
-                    article.setTitle(title.get(0).text());
-                    Elements span = e.getElementsByTag("span");
-                    if (!span.isEmpty()) {
-                        article.setDomain(span.get(0).text().replace("(", "").replace(")", ""));
-                    }
-                    article.setLink(e.getElementsByTag("a").get(0).attr("href"));
-                    article.setBrief(e.text());
-                    article.setIssue(issue);
-                    article.setSection(currentSection);
-                    articles.add(article);
-                    //articleDao.save(article);
-                }
+        List<Object> result = ArticleParsers.get(issue).parse(issue);
+        for (Object obj : result) {
+            if (obj instanceof Article) {
+                articleDao.save((Article) obj);
             }
         }
-        return new Response<>(articles, false);
-    }
-
-    private boolean isBiggerThan100(String issue) {
-        String s = issue.split("-")[1];
-        return Integer.parseInt(s) >= 103;
-    }
-
-    private void parse(Document doc, List<Object> articles, String issue) {
-        Elements tables = doc.getElementsByTag("table");
-        String currentSection = null;
-        for (Element e : tables) {
-            Elements h2 = e.getElementsByTag("h2");
-            if (!h2.isEmpty()) {
-                currentSection = h2.get(0).text();
-                articles.add(currentSection);
-            } else {
-                Elements tds = e.getElementsByTag("td");
-                Element td = tds.get(tds.size() - 2);
-                String imageUrl = null;
-                if (tds.size() == 4) {
-                    imageUrl = tds.get(0).getElementsByTag("img").get(0).attr("src");
-                }
-                String title = td.getElementsByClass("article-headline").get(0).text();
-                String brief = td.getElementsByTag("p").get(0).text();
-                String link = td.getElementsByClass("article-headline").get(0).attr("href");
-                String domain = td.getElementsByTag("span").get(0).text().replace("(", "").replace(")", "");
-                if (issue == null) {
-                    String number = doc.getElementsByClass("issue-header").get(0).getElementsByTag("span").get(0).text();
-                    issue = "/issues/issue-" + number.replace("#", "");
-                }
-                Article article = new Article();
-                article.setTitle(title);
-                article.setBrief(brief);
-                article.setLink(link);
-                article.setDomain(domain);
-                article.setIssue(issue);
-                article.setImageUrl(imageUrl);
-                article.setSection(currentSection);
-                articles.add(article);
-                articleDao.save(article);
-            }
-        }
+        return new Response<>(result, false);
     }
 
     private <T> void postSuccess(final Response<T> result, final ApiCallback<T> callback) {
