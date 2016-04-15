@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:text="ANDROID"
                 android:textColor="#36bce8"
-                android:textSize="16sp"
+                android:textSize="@dimen/text_size_large"
                 android:textStyle="bold" />
 
             <TextView
@@ -37,7 +37,7 @@
                 android:layout_marginLeft="4dp"
                 android:text="WEEKLY"
                 android:textColor="#464646"
-                android:textSize="16sp"
+                android:textSize="@dimen/text_size_large"
                 android:textStyle="bold" />
         </LinearLayout>
 

@@ -14,7 +14,7 @@
         android:padding="12dp"
         android:text="2013-11-12"
         android:textColor="@color/text_color_slide_date"
-        android:textSize="10sp" />
+        android:textSize="@dimen/text_size_tiny" />
 
     <TextView
         android:id="@+id/nameView"
@@ -24,7 +24,7 @@
         android:padding="12dp"
         android:text="Issue-128"
         android:textColor="@color/text_color_slide_issue"
-        android:textSize="14sp" />
+        android:textSize="@dimen/text_size_medium" />
 
     <View
         android:layout_width="match_parent"

@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:text="全系BMW 3系闪耀登场"
             android:textColor="#414141"
-            android:textSize="14sp" />
+            android:textSize="@dimen/text_size_medium" />
 
         <ImageView
             android:id="@+id/iconView"
@@ -35,7 +35,7 @@
             android:layout_toRightOf="@id/iconView"
             android:text="新的里程"
             android:textColor="#666"
-            android:textSize="12sp" />
+            android:textSize="@dimen/text_size_small" />
 
         <TextView
             android:id="@+id/domainView"
@@ -45,7 +45,7 @@
             android:layout_toRightOf="@id/iconView"
             android:text="medium.com"
             android:textColor="#999"
-            android:textSize="12sp" />
+            android:textSize="@dimen/text_size_small" />
     </RelativeLayout>
 
     <View

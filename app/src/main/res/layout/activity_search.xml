@@ -30,7 +30,7 @@
             android:maxLines="1"
             android:textColor="#666"
             android:textColorHint="#CCC"
-            android:textSize="14sp">
+            android:textSize="@dimen/text_size_medium">
 
             <requestFocus />
         </EditText>

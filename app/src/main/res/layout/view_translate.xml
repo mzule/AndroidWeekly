@@ -37,7 +37,7 @@
             android:padding="12dp"
             android:textColor="#666"
             android:textColorHint="#CCC"
-            android:textSize="13sp" />
+            android:textSize="@dimen/text_size_small" />
 
         <View
             style="@style/HorizontalLine"
@@ -55,7 +55,7 @@
             android:padding="12dp"
             android:textColor="#666"
             android:textColorHint="#CCC"
-            android:textSize="13sp" />
+            android:textSize="@dimen/text_size_small" />
 
         <View
             style="@style/HorizontalLine"
@@ -76,7 +76,7 @@
                 android:gravity="center"
                 android:text="Clear"
                 android:textColor="@color/colorPrimary"
-                android:textSize="13sp" />
+                android:textSize="@dimen/text_size_small" />
 
             <View style="@style/VerticalLine" />
 
@@ -89,7 +89,7 @@
                 android:gravity="center"
                 android:text="Translate"
                 android:textColor="@color/colorPrimary"
-                android:textSize="13sp" />
+                android:textSize="@dimen/text_size_small" />
         </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>
