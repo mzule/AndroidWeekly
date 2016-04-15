@@ -104,10 +104,69 @@ public class ArticleApi {
         if (issue != null) {
             url += issue;
         }
-        Document doc = Jsoup.parse(new URL(url), 30000);
-        Elements tables = doc.getElementsByTag("table");
-
         final List<Object> articles = new ArrayList<>();
+        Document doc = Jsoup.parse(new URL(url), 30000);
+        if (issue == null || isBiggerThan100(issue)) {
+            parse(doc, articles, issue);
+        } else {
+            Element root = doc.getElementsByClass("issue").get(0);
+            while (root.children().size() == 1) {
+                root = root.child(0);
+            }
+            String currentSection = null;
+            for (Element e : root.children()) {
+                if (e.tagName().equals("h2")) {
+                    currentSection = e.text();
+                    articles.add(currentSection);
+                    continue;
+                }
+                if (e.tagName().equals("div")) {
+                    Elements img = e.getElementsByTag("img");
+                    if (!img.isEmpty()) {
+                        Article article = new Article();
+                        article.setImageUrl(img.get(0).attr("src"));
+                        article.setTitle(e.getElementsByTag("a").get(1).text());
+                        article.setLink(e.getElementsByTag("a").get(1).attr("href"));
+                        article.setBrief(e.getElementsByTag("p").get(0).text());
+                        Elements span = e.getElementsByTag("span");
+                        if (!span.isEmpty()) {
+                            article.setDomain(span.get(0).text().replace("(", "").replace(")", ""));
+                        }
+                        article.setIssue(issue);
+                        article.setSection(currentSection);
+                        articles.add(article);
+                        //articleDao.save(article);
+                    }
+                } else {
+                    Article article = new Article();
+                    Elements title = e.getElementsByTag("a");
+                    if (title.isEmpty()) {
+                        continue;
+                    }
+                    article.setTitle(title.get(0).text());
+                    Elements span = e.getElementsByTag("span");
+                    if (!span.isEmpty()) {
+                        article.setDomain(span.get(0).text().replace("(", "").replace(")", ""));
+                    }
+                    article.setLink(e.getElementsByTag("a").get(0).attr("href"));
+                    article.setBrief(e.text());
+                    article.setIssue(issue);
+                    article.setSection(currentSection);
+                    articles.add(article);
+                    //articleDao.save(article);
+                }
+            }
+        }
+        return new Response<>(articles, false);
+    }
+
+    private boolean isBiggerThan100(String issue) {
+        String s = issue.split("-")[1];
+        return Integer.parseInt(s) >= 103;
+    }
+
+    private void parse(Document doc, List<Object> articles, String issue) {
+        Elements tables = doc.getElementsByTag("table");
         String currentSection = null;
         for (Element e : tables) {
             Elements h2 = e.getElementsByTag("h2");
@@ -141,7 +200,6 @@ public class ArticleApi {
                 articleDao.save(article);
             }
         }
-        return new Response<>(articles, false);
     }
 
     private <T> void postSuccess(final Response<T> result, final ApiCallback<T> callback) {
