@@ -1,6 +1,6 @@
 # AndroidWeekly
 
-一个第三方 androidweekly.net 的客户端，主要用 jsoup 抓取了 androidweekly.net 的数据进行展示，很适合在空暇时间充电学习。
+一个第三方 androidweekly.net 的客户端，主要用 jsoup 抓取了 androidweekly.net 的数据进行展示，很适合在空暇时间阅读浏览。
 
 ## 目前实现的功能
 
@@ -17,7 +17,15 @@
 
 ## 下载
 
+[https://github.com/mzule/AndroidWeekly/releases/download/1.0/app.apk](https://github.com/mzule/AndroidWeekly/releases/download/1.0/app.apk)
+
 ## 运行效果
+
+![](https://raw.githubusercontent.com/mzule/AndroidWeekly/master/art/translation.gif)
+![](https://raw.githubusercontent.com/mzule/AndroidWeekly/master/art/home.jpg)
+![](https://raw.githubusercontent.com/mzule/AndroidWeekly/master/art/issue.jpg)
+![](https://raw.githubusercontent.com/mzule/AndroidWeekly/master/art/article.jpg)
+![](https://raw.githubusercontent.com/mzule/AndroidWeekly/master/art/search.jpg)
 
 ## 感谢
 
