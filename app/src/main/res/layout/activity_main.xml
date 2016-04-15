@@ -13,14 +13,14 @@
             android:id="@+id/tintBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#fff" />
+            android:background="@color/white" />
 
         <LinearLayout
             android:id="@+id/brandView"
             android:layout_width="match_parent"
             android:layout_height="@dimen/action_bar_height"
             android:layout_below="@id/tintBar"
-            android:background="#fff"
+            android:background="@color/white"
             android:gravity="center">
 
             <TextView
