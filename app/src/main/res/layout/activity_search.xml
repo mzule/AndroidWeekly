@@ -28,8 +28,8 @@
             android:imeOptions="actionSearch"
             android:inputType="text"
             android:maxLines="1"
-            android:textColor="#666"
-            android:textColorHint="#CCC"
+            android:textColor="@color/textColorGray"
+            android:textColorHint="@color/textColorHint"
             android:textSize="@dimen/text_size_medium">
 
             <requestFocus />

@@ -9,4 +9,7 @@
     <color name="bg">#fcfcfc</color>
     <color name="white">#ffffff</color>
     <color name="slideBg">#ddffffff</color>
+    <color name="textColorGray">#666666</color>
+    <color name="textColorLightGray">#999999</color>
+    <color name="textColorHint">#CCCCCC</color>
 </resources>

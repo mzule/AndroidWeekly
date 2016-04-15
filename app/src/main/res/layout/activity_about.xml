@@ -19,7 +19,7 @@
         android:lineSpacingMultiplier="1.6"
         android:padding="@dimen/space"
         android:text="host at github"
-        android:textColor="#666"
+        android:textColor="@color/textColorGray"
         android:textColorLink="@color/colorPrimary"
         android:textSize="@dimen/text_size_medium" />
 </LinearLayout>

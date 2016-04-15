@@ -34,7 +34,7 @@
             android:layout_marginTop="@dimen/space"
             android:layout_toRightOf="@id/iconView"
             android:text="新的里程"
-            android:textColor="#666"
+            android:textColor="@color/textColorGray"
             android:textSize="@dimen/text_size_small" />
 
         <TextView
@@ -44,7 +44,7 @@
             android:layout_below="@id/briefView"
             android:layout_toRightOf="@id/iconView"
             android:text="medium.com"
-            android:textColor="#999"
+            android:textColor="@color/textColorLightGray"
             android:textSize="@dimen/text_size_small" />
     </RelativeLayout>
 

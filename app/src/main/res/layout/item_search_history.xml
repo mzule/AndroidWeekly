@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/space"
         android:text="You are best."
-        android:textColor="#666"
+        android:textColor="@color/textColorGray"
         android:textSize="@dimen/text_size_medium" />
 
     <View style="@style/HorizontalLine" />

@@ -35,8 +35,8 @@
             android:imeActionLabel="翻译"
             android:maxHeight="100dp"
             android:padding="@dimen/space"
-            android:textColor="#666"
-            android:textColorHint="#CCC"
+            android:textColor="@color/textColorGray"
+            android:textColorHint="@color/textColorHint"
             android:textSize="@dimen/text_size_small" />
 
         <View
@@ -53,8 +53,8 @@
             android:focusable="false"
             android:hint="Result will display here..."
             android:padding="@dimen/space"
-            android:textColor="#666"
-            android:textColorHint="#CCC"
+            android:textColor="@color/textColorGray"
+            android:textColorHint="@color/textColorHint"
             android:textSize="@dimen/text_size_small" />
 
         <View
