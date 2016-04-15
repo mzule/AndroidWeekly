@@ -53,6 +53,6 @@ Apache License  2.0
 
 1. 提 issue
 1. 新浪微博 [http://weibo.com/mzule](http://weibo.com/mzule)
-1. 个人博客 [https://caodongping.me](http://caodongping.me)
+1. 个人博客 [http://caodongping.me](http://caodongping.me)
 1. 邮件 "mzule".concat("4j").concat("@").concat("gmail.com")
 
