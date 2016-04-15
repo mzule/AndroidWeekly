@@ -24,8 +24,9 @@ public class AboutActivity extends BaseActivity {
     @Override
     protected void afterInject() {
         textView.setMovementMethod(LinkMovementMethod.getInstance());
-        textView.setText(Html.fromHtml("Github Host: <br/><a href='https://github.com/mzule/AndroidWeekly'>https://github.com/mzule/AndroidWeekly</a><br/>" +
-                "Weibo:<br/> <a href='sinaweibo://userinfo?uid=mzule'>mzule</a>"));
+        textView.setText(Html.fromHtml("Copyright: <br/><a href='http://androidweekly.net/'>http://androidweekly.net/</a><br/>" +
+                "Github Host: <br/><a href='https://github.com/mzule/AndroidWeekly'>https://github.com/mzule/AndroidWeekly</a><br/>" +
+                "Contributor:<br/> <a href='sinaweibo://userinfo?uid=mzule'>mzule</a>"));
     }
 
     @Override
