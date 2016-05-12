@@ -1,6 +1,8 @@
 package com.github.mzule.androidweekly.ui.activity;
 
 import android.annotation.SuppressLint;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.view.GravityCompat;
@@ -9,6 +11,7 @@ import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 import com.github.mzule.androidweekly.R;
 import com.github.mzule.androidweekly.dao.FavoriteDao;
@@ -79,6 +82,15 @@ public class ArticleActivity extends BaseActivity {
         startActivity(Intent.createChooser(intent, "SHARE"));
 
         drawerLayout.closeDrawers();
+    }
+
+    @OnClick(R.id.copyUrlButton)
+    void copyUrl() {
+        ClipboardManager clipboard = (ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText("label",article.getLink());
+        clipboard.setPrimaryClip(clip);
+        drawerLayout.closeDrawers();
+        Toast.makeText(ArticleActivity.this, "已复制文章链接到粘贴板", Toast.LENGTH_SHORT).show();
     }
 
     @SuppressLint("SetJavaScriptEnabled")
