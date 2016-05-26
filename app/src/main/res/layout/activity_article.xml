@@ -86,16 +86,16 @@
         <View style="@style/HorizontalLine" />
 
         <com.github.mzule.androidweekly.ui.view.IconButton
-            android:id="@+id/shareButton"
+            android:id="@+id/copyUrlButton"
             style="@style/BigControl"
-            app:materialIcon="share" />
+            app:materialIcon="content_copy" />
 
         <View style="@style/HorizontalLine" />
 
         <com.github.mzule.androidweekly.ui.view.IconButton
-            android:id="@+id/copyUrlButton"
+            android:id="@+id/shareButton"
             style="@style/BigControl"
-            app:materialIcon="content_copy" />
+            app:materialIcon="share" />
 
         <View style="@style/HorizontalLine" />
 
