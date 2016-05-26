@@ -17,7 +17,7 @@
 
 ## 下载
 
-[https://github.com/mzule/AndroidWeekly/releases/download/v1.0.0/weekly.apk](https://github.com/mzule/AndroidWeekly/releases/download/v1.0.0/weekly.apk)
+[https://github.com/mzule/AndroidWeekly/releases](https://github.com/mzule/AndroidWeekly/releases)
 
 ## 运行效果
 
