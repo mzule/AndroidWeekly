@@ -34,8 +34,10 @@ public class SearchResultActivity extends BaseActivity {
 
     @OnItemClick(R.id.listView)
     void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Article article = (Article) parent.getAdapter().getItem(position);
-        startActivity(ArticleActivity.makeIntent(this, article));
+        Object item = parent.getAdapter().getItem(position);
+        if (item instanceof Article) {
+            startActivity(ArticleActivity.makeIntent(this, (Article) item));
+        }
     }
 
     @Override

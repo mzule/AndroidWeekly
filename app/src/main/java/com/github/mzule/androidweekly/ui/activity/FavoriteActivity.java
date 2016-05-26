@@ -41,8 +41,10 @@ public class FavoriteActivity extends BaseActivity {
 
     @OnItemClick(R.id.listView)
     void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Article article = (Article) parent.getAdapter().getItem(position);
-        startActivityForResult(ArticleActivity.makeIntent(this, article), REQUEST_CODE_OPEN_ARTICLE);
+        Object item = parent.getAdapter().getItem(position);
+        if (item instanceof Article) {
+            startActivityForResult(ArticleActivity.makeIntent(this, (Article) item), REQUEST_CODE_OPEN_ARTICLE);
+        }
     }
 
     @OnClick(R.id.exportButton)
