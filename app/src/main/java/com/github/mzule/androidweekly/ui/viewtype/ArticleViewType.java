@@ -8,15 +8,15 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.github.mzule.androidweekly.R;
 import com.github.mzule.androidweekly.entity.Article;
-import com.github.mzule.easyadapter.ViewType;
+import com.github.mzule.layoutannotation.Layout;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * Created by CaoDongping on 3/24/16.
  */
-public class ArticleViewType extends ViewType<Article> {
+@Layout(R.layout.item_article)
+public class ArticleViewType extends BaseViewType<Article> {
     @Bind(R.id.nameView)
     TextView nameView;
     @Bind(R.id.briefView)
@@ -25,12 +25,6 @@ public class ArticleViewType extends ViewType<Article> {
     TextView domainView;
     @Bind(R.id.iconView)
     ImageView iconView;
-
-    @Override
-    public void onCreate() {
-        setContentView(R.layout.item_article);
-        ButterKnife.bind(this, getView());
-    }
 
     @Override
     public void onRender(int position, Article data) {

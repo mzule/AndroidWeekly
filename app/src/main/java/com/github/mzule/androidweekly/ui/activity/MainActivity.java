@@ -14,6 +14,7 @@ import com.github.mzule.androidweekly.entity.Issue;
 import com.github.mzule.androidweekly.ui.adapter.ArticleAdapter;
 import com.github.mzule.androidweekly.ui.adapter.SlideAdapter;
 import com.github.mzule.androidweekly.ui.view.ProgressView;
+import com.github.mzule.layoutannotation.Layout;
 
 import java.util.List;
 
@@ -21,8 +22,8 @@ import butterknife.Bind;
 import butterknife.OnClick;
 import butterknife.OnItemClick;
 
+@Layout(R.layout.activity_main)
 public class MainActivity extends BaseActivity {
-
     @Bind(R.id.drawerLayout)
     DrawerLayout drawerLayout;
     @Bind(R.id.listView)
@@ -80,7 +81,7 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    protected void afterInject() {
+    protected void afterBind() {
         articleApi = new ArticleApi();
 
         adapter = new ArticleAdapter(this);
@@ -130,11 +131,6 @@ public class MainActivity extends BaseActivity {
             public void onFailure(Exception e) {
             }
         });
-    }
-
-    @Override
-    protected int getLayoutResourceId() {
-        return R.layout.activity_main;
     }
 
     @Override

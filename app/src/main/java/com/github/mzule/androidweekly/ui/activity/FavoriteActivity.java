@@ -14,6 +14,7 @@ import com.github.mzule.androidweekly.entity.Article;
 import com.github.mzule.androidweekly.entity.Favorite;
 import com.github.mzule.androidweekly.ui.adapter.ArticleAdapter;
 import com.github.mzule.androidweekly.util.DateUtil;
+import com.github.mzule.layoutannotation.Layout;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ import butterknife.OnItemClick;
 /**
  * Created by CaoDongping on 3/28/16.
  */
+@Layout(R.layout.activity_favorite)
 public class FavoriteActivity extends BaseActivity {
     private static final int REQUEST_CODE_OPEN_ARTICLE = 0x1;
     @Bind(R.id.drawerLayout)
@@ -72,7 +74,7 @@ public class FavoriteActivity extends BaseActivity {
     }
 
     @Override
-    protected void afterInject() {
+    protected void afterBind() {
         favoriteDao = new FavoriteDao();
         adapter = new ArticleAdapter(this);
         listView.setAdapter(adapter);
@@ -95,11 +97,6 @@ public class FavoriteActivity extends BaseActivity {
             ret.add(favorite.getArticle());
         }
         return ret;
-    }
-
-    @Override
-    protected int getLayoutResourceId() {
-        return R.layout.activity_favorite;
     }
 
     @Override

@@ -37,6 +37,7 @@
 * [glide](https://github.com/bumptech/glide)
 * [gson](https://github.com/google/gson)
 * [jsoup](http://jsoup.org/)
+* [LayoutAnnotation](https://github.com/mzule/LayoutAnnotation)
 * [material-icon-lib](https://github.com/code-mc/material-icon-lib)
 * [materialish-progress](https://github.com/pnikosis/materialish-progress)
 * [Snowball](http://snowballstem.org/)

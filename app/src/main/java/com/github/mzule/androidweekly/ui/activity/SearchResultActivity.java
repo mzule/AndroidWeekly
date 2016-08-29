@@ -11,6 +11,7 @@ import com.github.mzule.androidweekly.dao.ArticleDao;
 import com.github.mzule.androidweekly.entity.Article;
 import com.github.mzule.androidweekly.ui.adapter.ArticleAdapter;
 import com.github.mzule.androidweekly.ui.view.NaviBar;
+import com.github.mzule.layoutannotation.Layout;
 
 import java.util.List;
 
@@ -20,6 +21,7 @@ import butterknife.OnItemClick;
 /**
  * Created by CaoDongping on 4/5/16.
  */
+@Layout(R.layout.activity_search_result)
 public class SearchResultActivity extends BaseActivity {
     @Bind(R.id.naviBar)
     NaviBar naviBar;
@@ -41,7 +43,7 @@ public class SearchResultActivity extends BaseActivity {
     }
 
     @Override
-    protected void afterInject() {
+    protected void afterBind() {
         String q = getIntent().getStringExtra("q");
         naviBar.setLeftText(q.toUpperCase());
 
@@ -50,10 +52,5 @@ public class SearchResultActivity extends BaseActivity {
         ArticleAdapter adapter = new ArticleAdapter(this);
         listView.setAdapter(adapter);
         adapter.addAndNotify(result);
-    }
-
-    @Override
-    protected int getLayoutResourceId() {
-        return R.layout.activity_search_result;
     }
 }

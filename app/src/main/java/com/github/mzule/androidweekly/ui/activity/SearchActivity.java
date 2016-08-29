@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.github.mzule.androidweekly.R;
 import com.github.mzule.androidweekly.dao.SearchHistoryKeeper;
 import com.github.mzule.androidweekly.ui.adapter.SearchHistoryAdapter;
+import com.github.mzule.layoutannotation.Layout;
 
 import butterknife.Bind;
 import butterknife.OnItemClick;
@@ -19,8 +20,8 @@ import butterknife.OnItemClick;
 /**
  * Created by CaoDongping on 4/5/16.
  */
+@Layout(R.layout.activity_search)
 public class SearchActivity extends BaseActivity {
-
     @Bind(R.id.queryInput)
     EditText queryInput;
     @Bind(R.id.listView)
@@ -39,7 +40,7 @@ public class SearchActivity extends BaseActivity {
     }
 
     @Override
-    protected void afterInject() {
+    protected void afterBind() {
         adapter = new SearchHistoryAdapter(this);
         listView.setAdapter(adapter);
         queryInput.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -59,10 +60,5 @@ public class SearchActivity extends BaseActivity {
         super.onStart();
         adapter.clear();
         adapter.addAndNotify(SearchHistoryKeeper.read());
-    }
-
-    @Override
-    protected int getLayoutResourceId() {
-        return R.layout.activity_search;
     }
 }

@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
 
 android {
     compileSdkVersion 23
@@ -20,7 +21,6 @@ android {
 }
 
 dependencies {
-
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
@@ -32,4 +32,6 @@ dependencies {
     compile 'net.steamcrafted:materialiconlib:1.0.9'
     compile 'com.pnikosis:materialish-progress:1.7'
     compile project(':snowball')
+    compile 'com.github.mzule.layoutannotation:library:1.0.3'
+    apt 'com.github.mzule.layoutannotation:compiler:1.0.3'
 }

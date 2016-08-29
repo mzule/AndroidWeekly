@@ -19,6 +19,7 @@ import com.github.mzule.androidweekly.dao.TextZoomKeeper;
 import com.github.mzule.androidweekly.entity.Article;
 import com.github.mzule.androidweekly.ui.view.ProgressView;
 import com.github.mzule.androidweekly.ui.view.TranslateView;
+import com.github.mzule.layoutannotation.Layout;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -26,6 +27,7 @@ import butterknife.OnClick;
 /**
  * Created by CaoDongping on 3/24/16.
  */
+@Layout(R.layout.activity_article)
 public class ArticleActivity extends BaseActivity {
     @Bind(R.id.webView)
     WebView webView;
@@ -95,7 +97,7 @@ public class ArticleActivity extends BaseActivity {
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
-    protected void afterInject() {
+    protected void afterBind() {
         favoriteDao = new FavoriteDao();
         article = (Article) getIntent().getSerializableExtra("article");
         settings = webView.getSettings();
@@ -126,12 +128,6 @@ public class ArticleActivity extends BaseActivity {
         setResult(RESULT_OK, intent);
         super.finish();
     }
-
-    @Override
-    protected int getLayoutResourceId() {
-        return R.layout.activity_article;
-    }
-
 
     @Override
     public void onBackPressed() {
