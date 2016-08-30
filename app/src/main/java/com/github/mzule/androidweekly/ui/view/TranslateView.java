@@ -7,7 +7,6 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 
@@ -16,14 +15,15 @@ import com.github.mzule.androidweekly.api.ApiCallback;
 import com.github.mzule.androidweekly.api.DictionaryApi;
 import com.github.mzule.androidweekly.entity.Dict;
 import com.github.mzule.androidweekly.util.Keyboard;
+import com.github.mzule.layoutannotation.Layout;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
  * Created by CaoDongping on 3/30/16.
  */
+@Layout(R.layout.view_translate)
 public class TranslateView extends PopupView<Void> {
     @Bind(R.id.queryInput)
     EditText queryInput;
@@ -34,7 +34,6 @@ public class TranslateView extends PopupView<Void> {
 
     public TranslateView(Context context) {
         super(context);
-        init();
     }
 
     @OnClick(R.id.maskView)
@@ -74,11 +73,6 @@ public class TranslateView extends PopupView<Void> {
                 resultView.setText(Log.getStackTraceString(e));
             }
         });
-    }
-
-    private void init() {
-        LayoutInflater.from(getContext()).inflate(R.layout.view_translate, this);
-        ButterKnife.bind(this);
     }
 
     @Override

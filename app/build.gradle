@@ -32,6 +32,6 @@ dependencies {
     compile 'net.steamcrafted:materialiconlib:1.0.9'
     compile 'com.pnikosis:materialish-progress:1.7'
     compile project(':snowball')
-    compile 'com.github.mzule.layoutannotation:library:1.0.3'
+    compile 'com.github.mzule.layoutannotation:library:1.0.4'
     apt 'com.github.mzule.layoutannotation:compiler:1.0.3'
 }

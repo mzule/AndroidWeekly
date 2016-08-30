@@ -5,20 +5,19 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
-import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
 
 import com.github.mzule.androidweekly.R;
+import com.github.mzule.androidweekly.ui.view.base.BaseRelativeLayout;
 
 
 /**
  * Created by CaoDongping on 11/30/15.
  */
-public abstract class PopupView<T> extends RelativeLayout {
+public abstract class PopupView<T> extends BaseRelativeLayout {
     public static final int ANIMATION_DIRECTION_BOTTOM_TO_TOP = 0;
     public static final int ANIMATION_DIRECTION_TOP_TO_BOTTOM = 1;
     public static final int ANIMATION_DIRECTION_LEFT_TO_RIGHT = 2;
@@ -27,15 +26,7 @@ public abstract class PopupView<T> extends RelativeLayout {
     private boolean inAnimation;
 
     public PopupView(Context context) {
-        super(context);
-    }
-
-    public PopupView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-    }
-
-    public PopupView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
+        super(context, null, 0);
     }
 
     /**
