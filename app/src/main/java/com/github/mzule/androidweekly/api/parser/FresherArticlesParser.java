@@ -23,9 +23,12 @@ public class FresherArticlesParser implements ArticleParser {
         String currentSection = null;
         for (Element e : tables) {
             Elements h2 = e.getElementsByTag("h2");
-            if (!h2.isEmpty()) {
-                currentSection = h2.get(0).text();
-                articles.add(currentSection);
+            Elements h5 = e.getElementsByTag("h5");// 兼容issue-226 SPONSORED 在 h5 标签里面
+            if (!h2.isEmpty() || !h5.isEmpty()) {
+                currentSection = h2.size() > 0 ? h2.get(0).text() : h5.get(0).text();
+                if (!articles.contains(currentSection)) {
+                    articles.add(currentSection);
+                }
             } else {
                 Elements tds = e.getElementsByTag("td");
                 Element td = tds.get(tds.size() - 2);
