@@ -24,8 +24,21 @@ public class NaviBar extends BaseLinearLayout {
     @Bind(R.id.rightTextView)
     TextView rightTextView;
 
+    public NaviBar(Context context) {
+        super(context);
+    }
+
+    public NaviBar(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+
     public NaviBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+    }
+
+    @Override
+    protected void init(Context context, AttributeSet attrs) {
+        super.init(context, attrs);
         if (attrs != null) {
             TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.NaviBar);
             leftTextView.setText(a.getString(R.styleable.NaviBar_nb_left_text));
